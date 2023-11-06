@@ -1,0 +1,83 @@
+.category_things {
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    padding: 30px;
+}
+
+.category_things__thing {
+    background-color: rgb(104, 132, 133);
+    box-shadow: 0 0 10px rgb(104, 132, 133);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    row-gap: 20px;
+}
+
+.thing__name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.name__title {
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color .2s linear;
+}
+
+.name__title:hover {
+    color: rgb(238, 238, 238);
+}
+
+.thing__name img {
+    width: 200px;
+    height: 200px;
+}
+
+.thing__price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 30px;
+}
+
+.price__price {
+    color: rgb(32, 29, 30);
+    font-size: 18px;
+}
+
+.price__buy_btn {
+    width: 120px;
+    height: 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(50, 71, 71);
+    color: rgba(238, 238, 238, 0.795);
+    font-size: 13px;
+    font-family: 'Ubuntu', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    transition: all .2s linear;
+}
+
+.price__buy_btn:hover {
+    color: rgb(238, 238, 238);
+    background-color: rgb(44, 53, 53);
+    box-shadow: 0 0 6px rgb(44, 53, 53);
+}

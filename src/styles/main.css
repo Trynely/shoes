@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+
+* {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: rgb(43, 43, 43);
+    font-family: 'Ubuntu', sans-serif;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 11px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(71, 71, 71);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(104, 132, 133);
+    border-radius: 3px;
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.middle {
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.middle__screen {
+    resize: none;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    text-align: center;
+    border-radius: 2px;
+    border: 2px solid aliceblue;
+    background-color: rgb(66, 66, 66);
+    box-shadow: 0 0 30px aliceblue;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: "Ubuntu";
+}
+
+.middle__button {
+    width: 100px;
+    height: 30px;
+    border: 2px solid aliceblue;
+    background: transparent;
+    font-family: "Ubuntu";
+    text-transform: uppercase;
+    color: aliceblue;
+    box-shadow: 0 0 5px aliceblue;
+    cursor: pointer;
+    transition: box-shadow .2s linear;
+}
+
+.middle h2 {
+    background-color: rgba(0, 0, 0, 0.486);
+    padding: 8px 60px;
+    border-radius: 3px;
+    box-shadow: 0 3px 10px rgb(0, 0, 0);
+}
+
+.middle__button:hover {
+    box-shadow: 0 0 10px aliceblue;
+}
+
+.middle__button:active {
+    transform: translate(0, 2px);
+}
+
+
+.not_found {
+    background-color: rgb(104, 132, 133);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+    position: relative;
+}
+
+.not_found__img {
+    width: 400px;
+    height: 400px;
+}
+
+.not_found__text {
+    position: absolute;
+    left: 39.5%;
+    top: 90px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.block {
+    margin-top: 180px;
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    padding: 0 0 60px;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px 100px;
+    border-radius: 10px;
+    background-color: rgb(104, 132, 133);
+    box-shadow: 0 0 10px rgb(104, 132, 133);
+    font-size: 13px;
+    color: aliceblue;
+}
+
+.thing {
+    background-color: aquamarine;
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.object {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.del {
+    margin-top: 30px;
+    width: 100px;
+    height: 30px;
+    border: 2px solid rgb(10, 10, 10);
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(156, 0, 0);
+    text-transform: uppercase;
+}
+
+.imga {
+    width: 200px;
+    height: 200px;
+}
+
+
+
+
+
+
+
+
+.login_container {
+    display: flex;
+    padding: 50px 0 0;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 40px;
+    margin: 240px auto;
+    width: 400px;
+    height: 350px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgb(18, 20, 20);
+    background-color: rgb(82, 105, 105);
+}
+
+.login_container h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    font-size: 19px;
+    text-transform: uppercase;
+    color: rgb(0, 12, 22);
+}
+
+.login_container svg {
+    width: 30px;
+    height: 30px;
+}
+
+.login_container form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.login_container form input {
+    width: 200px;
+    height: 30px;
+    outline: none;
+    background: none;
+    border: none;
+    color: aliceblue;
+    border-bottom: 2px solid rgb(0, 12, 22);
+    font-size: 12px;
+    transition: .2s linear;
+    text-transform: uppercase;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.login_container form input:focus {
+    border-color: rgb(39, 29, 29);
+}
+
+.login_container form input::-webkit-input-placeholder {
+    color: aliceblue;
+}
+
+.login_container form button {
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    color: aliceblue;
+    background-color: rgb(7, 7, 7);
+    text-transform: uppercase;
+    border: 2px solid rgb(7, 7, 7);
+    cursor: pointer;
+    font-family: 'Ubuntu', sans-serif;
+}
