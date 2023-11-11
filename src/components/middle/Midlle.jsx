@@ -21,21 +21,6 @@ function Middle() {
         Categories()
     }, [])
 
-    // const sliderCarousel = () => {
-    //     const carousel = document.querySelector(".slider__objects")
-    //     const firstImg = carousel.querySelectorAll(".slider__objects img")[0]
-
-    //     const arrowIcons = document.querySelectorAll(".slider__controls button")
-    //     let firstImgWidth = firstImg.clientWidth + 4
-
-    //     arrowIcons.forEach(icon => {
-    //         icon.addEventListener("click", () => {
-    //             console.log('dsq')
-    //             carousel.scrollLeft += icon.id == "left" ? -firstImgWidth : firstImgWidth
-    //         })
-    //     })
-    // }
-
     const Categories = async () => {
         try {
             const response = await fetch("http://127.0.0.1:8000/category/")
@@ -97,6 +82,7 @@ function Middle() {
     //         userThings()
     //     }
     // }, [tokens])
+    
     // ---------------------------------------
     
     return (

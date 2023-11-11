@@ -10,6 +10,7 @@
 }
 
 .category_things__thing {
+    position: relative;
     background-color: rgb(104, 132, 133);
     box-shadow: 0 0 10px rgb(104, 132, 133);
     border-radius: 5px;
@@ -80,4 +81,23 @@
     color: rgb(238, 238, 238);
     background-color: rgb(44, 53, 53);
     box-shadow: 0 0 6px rgb(44, 53, 53);
+}
+
+.thing__add_to {
+    position: absolute;
+    display: flex;
+    bottom: 3px;
+    right: 5px;
+    column-gap: 3px;
+}
+
+.thing__add_to button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.thing__add_to svg {
+    width: 22px;
+    height: 22px;
 }

@@ -1,7 +1,7 @@
 import {createContext} from "react"
 import {useState, useEffect} from 'react'
 import React from "react"
-import { jwtDecode } from "jwt-decode"
+import {jwtDecode} from "jwt-decode"
 import {useNavigate} from "react-router-dom"
 
 export const AuthenticationContext = createContext()
@@ -32,7 +32,7 @@ const Authentication = ({children}) => {
             })
 
             const data = await response.json()
-            // console.log("update >>", data)
+            console.log("update >>", data)
 
             if(response.status === 200) {
                 setTokens(data)

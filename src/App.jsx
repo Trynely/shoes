@@ -8,20 +8,27 @@ import Login from './pages/login/Login'
 import Register from './pages/login/Register'
 import Authentication from './components/authentication/Authentication'
 import CategoryThing from './pages/category-thing/CategoryThing'
+import Test from './pages/test/Test'
+import CartWishlistLength from './components/items-length/CartWishlistLen'
+
 
 const App = () => {
     return (
         <BrowserRouter>
             <Authentication>
-                <Routes>
-                    <Route path='/*' element={<NotFound/>} />
-                    <Route element={<Home/>} path="/" />
-                    <Route element={<Cart/>} path="/cart" />
-                    <Route element={<Login/>} path="/login" />
-                    <Route element={<Register/>} path='/register' />
-                    <Route element={<CategoryThing/>} path='/category/:category' />
-                    <Route element={<Thing/>} path='/things/:id' />
-                </Routes>
+                <CartWishlistLength>
+                    <Routes>
+                        <Route path='/*' element={<NotFound/>} />
+                        <Route element={<Home/>} path="/" />
+                        <Route element={<Cart/>} path="/cart" />
+                        <Route element={<Login/>} path="/login" />
+                        <Route element={<Register/>} path='/register' />
+                        <Route element={<CategoryThing/>} path='/category/:category' />
+                        <Route element={<Thing/>} path='/things/:id' />
+                        <Route element={<Test/>} path='/test' />
+                        {/* <Route element={<Cart/>} path='/wishlist' /> */}
+                    </Routes>
+                </CartWishlistLength>
             </Authentication>
         </BrowserRouter>
     )

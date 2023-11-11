@@ -1,0 +1,145 @@
+.cart {
+    margin-top: 200px;
+    padding-bottom: 100px;
+}
+
+.cart__container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1px;
+}
+
+.container__cart_thing {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(93, 116, 117);
+}
+
+.cart_thing__img_title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 6px;
+}
+
+.cart_thing__img_title img {
+    width: 200px;
+    height: 200px;
+}
+
+.cart_thing__img_title a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.cart_thing__quantity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 10px;
+    text-align: center;
+}
+
+.cart_thing__quantity button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all .1s linear;
+}
+
+.cart_thing__quantity button:hover {
+    opacity: .8;
+    scale: .9;
+}
+
+.cart_thing__quantity svg {
+    width: 30px;
+    height: 30px;
+}
+
+.cart_thing__quantity span {
+    font-size: 18px;
+}
+
+.cart_thing__price_delete {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px;
+}
+
+.cart_thing__price_delete img {
+    width: 25px;
+    height: 25px;
+    transition: all .2s linear;
+}
+
+.cart_thing__price_delete img:hover {
+    opacity: .5;
+    scale: .9;
+}
+
+.cart_thing__price_delete span {
+    font-size: 19px;
+}
+
+.cart_thing__price_delete button {
+    position: absolute;
+    bottom: 3px;
+    right: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.container__total_price {
+    background-color: rgb(93, 116, 117);
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 3px rgb(0, 0, 0);
+}
+
+.container__total_price div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+    align-items: center;
+    justify-content: center;
+}
+
+.container__total_price button {
+    width: 110px;
+    height: 26px;
+    font-family: 'Rubik', sans-serif;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: rgb(50, 71, 71);
+    color: rgba(238, 238, 238, 0.795);
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+.container__total_price button:hover {
+    color: rgb(238, 238, 238);
+    background-color: rgb(44, 53, 53);
+    box-shadow: 0 0 6px rgb(44, 53, 53);
+}
+
+.container__total_price img {
+    width: 70px;
+    height: 70px;
+}
+
+.container__total_price span {
+    font-size: 18px;
+}
+

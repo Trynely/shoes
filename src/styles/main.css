@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
 
 * {
     padding: 0px;
@@ -96,13 +97,13 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 200px;
+    margin-top: 160px;
     position: relative;
 }
 
 .not_found__img {
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
 }
 
 .not_found__text {
