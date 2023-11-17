@@ -21,7 +21,7 @@
 }
 
 .container__logo img {
-    width: 100px;
+    width: 130px;
     height: 75px;
 }
 
@@ -30,7 +30,7 @@
     align-items: flex-end;
     justify-content: flex-end;
     text-transform: uppercase;
-    column-gap: 30px;
+    column-gap: 22px;
     height: 65%;
 }
 
@@ -49,21 +49,20 @@
     color: rgb(0, 0, 0);
 }
 
-.cart_len {
+/* .cart_len {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    left: -5px;
-    bottom: 0px;
-    border: 2px solid black;
+    border: 2px solid rgb(0, 0, 0);
     width: 16px;
     height: 16px;
+    font-size: 12px;
+    text-align: center;
     border-radius: 50%;
-    color: rgb(255, 255, 255);
-    background-color: black;
-    font-size: 10px;
-}
+    background-color: rgb(104, 132, 133);
+    color: rgb(0, 0, 0);
+    font-family: 'Rubik', sans-serif;
+} */
 
 .container__nav a:hover {
     color: rgb(0, 68, 68);
@@ -117,11 +116,10 @@
     flex-direction: column;
     position: relative;
     min-width: 150px;
-    border-radius: 2px;
     transition: all .2s linear;
     background-color: rgb(113, 139, 139);
     transform: translateY(8px);
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 @keyframes showDropDownUserMenu {
@@ -162,6 +160,11 @@
     transition: transform .2s linear;
 }
 
+.nav__user_container:hover {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 .nav__user_container:hover .is_authenticated__user_options svg {
     transform: rotate(90deg);
 }
@@ -181,7 +184,7 @@
     background-position: center;
 }
 
-.login {
+.go_to_login {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -211,9 +214,10 @@
     align-items: center;
     justify-content: space-between;
     column-gap: 1px;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 12px;
     padding: 3px 5px;
     cursor: pointer;
     background: transparent;

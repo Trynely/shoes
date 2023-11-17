@@ -16,6 +16,7 @@ const Authentication = ({children}) => {
 
     const logoutUser = () => {
         localStorage.removeItem('JWT')
+        localStorage.removeItem('Img')
         setTokens(null)
         setUser(null)
         navigate("/login")
@@ -43,12 +44,12 @@ const Authentication = ({children}) => {
                 setTokens(null)
                 setUser(null)
                 window.location.reload()
-            } else if(response.statusText === "Unauthorized") {
-                localStorage.removeItem('JWT')
-                setTokens(null)
-                setUser(null)
-                window.location.reload()
-            }
+            } // else if(response.statusText === "Unauthorized") {
+            // //     localStorage.removeItem('JWT')
+            // //     setTokens(null)
+            // //     setUser(null)
+            // //     window.location.reload()
+            // // }
 
             if(active) {
                 setActive(false)
@@ -68,7 +69,7 @@ const Authentication = ({children}) => {
             let interval = setInterval(() => {
                 updateToken()
             }, 540000) // 9 min
-    
+
             return () => clearInterval(interval)
         }
     }, [tokens])

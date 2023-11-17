@@ -6,9 +6,11 @@ const NotFound = () => {
     return (
         <div className="wrapper">
             <Header/>
+
             <div className='not_found'>
                 <img className='not_found__img' src="/not-found.svg" alt="" />
             </div>
+            
             <Footer/>
         </div>
 

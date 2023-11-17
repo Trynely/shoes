@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
 .category_things {
     margin-top: 200px;
     display: flex;
@@ -31,11 +34,12 @@
 }
 
 .name__title {
-    color: rgb(0, 0, 0);
-    text-transform: uppercase;
+    color: rgb(31, 30, 30);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 19px;
     transition: color .2s linear;
+    font-weight: 700;
+    font-family: 'Rubik', sans-serif;
 }
 
 .name__title:hover {
@@ -56,7 +60,9 @@
 }
 
 .price__price {
-    color: rgb(32, 29, 30);
+    font-weight: 700;
+    font-family: 'Rubik', sans-serif;
+    color: rgb(0, 0, 0);
     font-size: 18px;
 }
 
@@ -100,4 +106,71 @@
 .thing__add_to svg {
     width: 22px;
     height: 22px;
+}
+
+.thing__add_to img {
+    width: 22px;
+    height: 22px;
+}
+
+
+@keyframes AdToWishlist {
+    0% {
+        stroke: #ac2323;
+        stroke-dashoffset: 60;
+    }
+
+    100% {
+        stroke: #ac2323;
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes AdToWishlistKnock {
+    0% {
+        stroke: #a13333;
+        fill: #a13333;
+    }
+
+    20% {
+        stroke: #a13333;
+        fill: #a13333;
+        transform: scale(0.8);
+    }
+
+    50% {
+        stroke: #a13333;
+        transform: none;
+    }
+
+    80% {
+        stroke: #a13333;
+        transform: scale(0.8);
+    }
+
+    100% {
+        color: #a13333;
+        fill: #a13333;
+    }
+}
+
+.favorites_heart__active {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    color: #000;
+
+    animation: AdToWishlist .8s linear forwards, AdToWishlistKnock .4s .8s linear forwards;
+}
+
+.unautheticated {
+    color: #000;
+}
+
+.login_needed {
+    color: #000;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }

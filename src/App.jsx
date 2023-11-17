@@ -10,6 +10,7 @@ import Authentication from './components/authentication/Authentication'
 import CategoryThing from './pages/category-thing/CategoryThing'
 import Test from './pages/test/Test'
 import CartWishlistLength from './components/items-length/CartWishlistLen'
+import Wishlist from './pages/wishlist/Wishlist'
 
 
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
                         <Route element={<CategoryThing/>} path='/category/:category' />
                         <Route element={<Thing/>} path='/things/:id' />
                         <Route element={<Test/>} path='/test' />
-                        {/* <Route element={<Cart/>} path='/wishlist' /> */}
+                        <Route element={<Wishlist/>} path='/wishlist' />
                     </Routes>
                 </CartWishlistLength>
             </Authentication>

@@ -35,7 +35,7 @@ html, body {
     flex-direction: column;
 }
 
-.middle {
+/* .middle {
     color: aliceblue;
     display: flex;
     align-items: center;
@@ -89,7 +89,7 @@ html, body {
 
 .middle__button:active {
     transform: translate(0, 2px);
-}
+} */
 
 
 .not_found {
@@ -124,73 +124,7 @@ html, body {
 
 
 
-
-
-
-.block {
-    margin-top: 180px;
-    display: flex;
-    column-gap: 30px;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    row-gap: 30px;
-    padding: 0 0 60px;
-}
-
-.product {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 50px 100px;
-    border-radius: 10px;
-    background-color: rgb(104, 132, 133);
-    box-shadow: 0 0 10px rgb(104, 132, 133);
-    font-size: 13px;
-    color: aliceblue;
-}
-
-.thing {
-    background-color: aquamarine;
-    margin-top: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.object {
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-}
-
-.del {
-    margin-top: 30px;
-    width: 100px;
-    height: 30px;
-    border: 2px solid rgb(10, 10, 10);
-    border-radius: 5px;
-    background: none;
-    cursor: pointer;
-    font-family: 'Ubuntu', sans-serif;
-    color: rgb(156, 0, 0);
-    text-transform: uppercase;
-}
-
-.imga {
-    width: 200px;
-    height: 200px;
-}
-
-
-
-
-
-
-
-
-.login_container {
+/* .login_container {
     display: flex;
     padding: 50px 0 0;
     align-items: center;
@@ -259,4 +193,4 @@ html, body {
     border: 2px solid rgb(7, 7, 7);
     cursor: pointer;
     font-family: 'Ubuntu', sans-serif;
-}
+} */

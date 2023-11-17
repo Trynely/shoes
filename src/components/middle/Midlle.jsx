@@ -1,10 +1,8 @@
 import "./../../styles/main.css"
 import {useState, useEffect, useContext, useRef} from 'react'
-import axios from "axios"
 import React from "react"
 import {Link} from "react-router-dom"
 import {AuthenticationContext} from "../authentication/Authentication"
-import Slider from "react-slick"
 import "./middle.css"
 // import "slick-carousel/slick/slick.css"
 // import "slick-carousel/slick/slick-theme.css"
@@ -14,12 +12,20 @@ function Middle() {
 
     // const [things, setThings] = useState([])
     const [activeIndex, setActiveIndex] = useState(0)
+    const [welcome, setWelcome] = useState(false)
     const [categories, setCategories] = useState()
-    const images = useRef(null)
 
     useEffect(() => {
         Categories()
     }, [])
+
+    useEffect(() => {
+        let interval = setInterval(() => {
+            welcomeSlider()
+        }, 6000)
+
+        return () => clearInterval(interval)
+    }, [welcome])
 
     const Categories = async () => {
         try {
@@ -34,21 +40,27 @@ function Middle() {
         }
     }
 
-    function delThing(id) {
-        axios.delete(`http://127.0.0.1:8000/things/${id}/`)
-        window.location.reload()
+    const welcomeSlider = () => {
+        setWelcome(true)
+
+        if(welcome) {
+            setWelcome(false)
+        }
     }
 
-    const updateIndex = (newIndex) => {
-        if (newIndex < 0) {
-            newIndex = 0
-        } else if (newIndex >= 1) {
-            newIndex = 1
-            console.log(activeIndex)
+    const sliderCategory = (position) => {
+        if(position < 0) {
+            position = 0
+        } else if (position >= 1) {
+            position = 1
         }
-    
-        setActiveIndex(newIndex)
+        setActiveIndex(position)
     }
+
+    // function delThing(id) {
+    //     axios.delete(`http://127.0.0.1:8000/things/${id}/`)
+    //     window.location.reload()
+    // }
 
     // --------------------------------------------------------------------------------
     // ДЛЯ ПОЛЬЗОВАТЕЛЯ
@@ -88,12 +100,19 @@ function Middle() {
     return (
         <main className='content'>
             <div className='content__container'>
-                { categories ?
+                <div className="container__welcome_slider">
+                    <img style={welcome ? {display: "none"} : {display: "block"}} src="/welcome-1.jpg" alt="" />
+                    <img style={welcome ? {display: "block"} : {display: "none"}} src="/welcome-2.jpg" alt="" />
+                </div>
+
+                { 
+                    categories 
+                        ?
                     <div className="container__slider">
-                        <div ref={images} className="slider__objects">
+                        <div className="slider__objects">
                             {
                                 categories.map((category) => (
-                                    <Link className="category" to={`/category/${category.slug}`} key={category.id} style={{transform: `translate(-${activeIndex * 101}%)`}}>
+                                    <Link className="category" to={`/category/${category.slug}`} key={category.id} style={{transform: `translateX(-${activeIndex * 101}%)`}}>
                                         <img src={category.img} alt="" />
                                     </Link>
                                 ))
@@ -101,19 +120,21 @@ function Middle() {
                         </div>
 
                         <div className="slider__controls">
-                            <button id="left" onClick={() => {updateIndex(activeIndex - 1)}}>
+                            <button onClick={() => {sliderCategory(activeIndex - 1)}}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                                 </svg>
                             </button>
 
-                            <button id="right" onClick={() => {updateIndex(activeIndex + 1)}}>
+                            <button onClick={() => {sliderCategory(activeIndex + 1)}}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                                 </svg>
                             </button>
                         </div>
-                    </div> : ""
+                    </div> 
+                        :
+                    null
                 }
             </div>
         </main>
