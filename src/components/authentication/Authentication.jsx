@@ -33,7 +33,7 @@ const Authentication = ({children}) => {
             })
 
             const data = await response.json()
-            console.log("update >>", data)
+            // console.log("update >>", data)
 
             if(response.status === 200) {
                 setTokens(data)
@@ -54,7 +54,6 @@ const Authentication = ({children}) => {
             if(active) {
                 setActive(false)
             }
-
         } catch(err) {
             logoutUser()
         }

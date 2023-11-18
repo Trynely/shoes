@@ -26,10 +26,12 @@ const Thing = () => {
     return (
         <div className="wrapper">
             <Header/>
+
             <div className="thing">
                 <h2>Имя: {state.title}</h2>
                 <h3>Текст: {state.text}</h3>
             </div>
+            
             <Footer/>
         </div>
     )
