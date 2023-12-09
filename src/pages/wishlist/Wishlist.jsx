@@ -19,7 +19,7 @@ const Wishlist = () => {
         if(user) {
             wishlistThings()
         }
-    }, [thingsOfWishlist])
+    }, [])
 
     const wishlistThings = async () => {
         try {

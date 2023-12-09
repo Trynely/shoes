@@ -1,21 +1,21 @@
-import "./../../styles/main.css"
 import {useEffect } from "react"
 import Middle from "./../../components/middle/Midlle"
 import Header from "./../../components/header/Header"
 import Footer from "../../components/footer/Footer"
+import "./../../styles/main.css"
 
 
 function Home() {
     useEffect(() => {
-        document.title = "Главная"
+        document.title = "TRY"
     }, [])
 
     return (
-        <div className='wrapper'>
+        <>
             <Header/>
             <Middle/>
             <Footer/>
-        </div>
+        </>
     )
 }
 

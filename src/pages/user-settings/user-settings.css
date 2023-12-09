@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+.user_settings {
+    margin-top: 100px;
+    height: 630px;
+    /* background-color: rgb(64, 72, 73); */
+}
+
+.user_settings__container {
+    display: flex;
+}
+
+.container__user_edits {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(59, 64, 65, 0.178);
+    padding: 50px;
+    height: 630px;
+}
+
+.container__user_edits svg {
+    width: 17px;
+    height: 17px;
+}
+
+.user_edits__avatar {
+    display: flex;
+    flex-direction: column;
+}
+
+.user_edits__avatar img {
+    /* background-size: cover;
+    background-position: center; */
+    background-repeat: no-repeat;
+    object-fit: cover;
+    object-position: center;
+    width: 250px;
+    height: 250px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    /* border: 2px solid rgb(104, 132, 133); */
+}
+
+.avatar__edit {
+    width: 100%;
+    height: 35px;
+    cursor: pointer;
+    background-color: rgb(41, 41, 41);
+    color: rgba(224, 224, 224, 0.836);
+    font-size: 14px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    column-gap: 8px;
+
+    transition: all .2s linear;
+}
+
+.avatar__edit:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(30, 32, 32);
+}
+
+.user_edits__params {
+    display: flex;
+    align-items: center;
+}
+
+.user_edits__params button {
+    width: 100%;
+    height: 35px;
+    cursor: pointer;
+    background-color: rgb(41, 41, 41);
+    color: rgba(224, 224, 224, 0.836);
+    font-size: 14px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    column-gap: 8px;
+    border-top: 2px solid rgb(34, 34, 34);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+    transition: all .2s linear;
+}
+
+.user_edits__params button:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(30, 32, 32);
+}
+
+.user_edits__params button svg {
+    transition: transform .1s linear;
+}
+
+@keyframes showUserWindow {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes hideUserWindow {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.container__settings_window {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(59, 64, 65, 0.178);
+    width: 100%;
+    padding: 33px;
+    height: 630px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: all .2s linear;
+    border-left: 2px solid rgb(43, 43, 43);
+
+    animation: showUserWindow .3s linear forwards;
+}
+
+.container__settings_window form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    align-items: center;
+}
+
+.settings_window__form_label {
+    font-size: 19px;
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 30px;
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+    column-gap: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+}
+
+.settings_window__form_label svg {
+    width: 25px;
+    height: 25px;
+}
+
+.container__settings_window input {
+    width: 400px;
+    height: 40px;
+    outline: none;
+    border: 2px solid rgb(43, 43, 43);
+    background-color: rgba(240, 248, 255, 0.795);
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    padding: 0 10px;
+
+    transition: border-color .2s linear;
+}
+
+.container__settings_window input:focus {
+    border-color: var(--main-color);
+}
+
+.container__settings_window input::placeholder {
+    font-family: 'Rubik', sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+}
+
+.container__settings_window button {
+    width: 130px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(62, 68, 67);
+    color: rgba(224, 224, 224, 0.836);
+    font-size: 13px;
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 18px;
+
+    transition: all .2s linear;
+}
+
+.container__settings_window button:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgba(62, 68, 67, 0.678);
+}
+
+.container__settings_window form div {
+    position: relative;
+}
+
+.container__settings_window form div svg {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    z-index: 5;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.container__settings_window form div svg:hover {
+    opacity: .8;
+}
+
+.validation_of_change_password {
+    position: absolute;
+    bottom: 43px;
+    text-transform: uppercase;
+    font-family: 'Rubik', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

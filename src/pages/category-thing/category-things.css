@@ -2,18 +2,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
 
 .category_things {
-    margin-top: 200px;
+    margin-top: 155px;
+}
+
+.things__container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    margin: 0 auto;
+    max-width: 95%;
+    padding-bottom: 60px;
+}
+
+.things_container__search {
+    display: flex;
     align-items: center;
+    justify-content: center;
+    column-gap: 15px;
+}
+
+.things_container__search input {
+    width: 400px;
+    height: 35px;
+    outline: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: 'Rubik', sans-serif;
+    padding: 0 10px;
+    border: 2px solid var(--main-color);
+    background-color: rgb(156, 177, 177);
+    font-weight: 600;
+
+    transition: all .1s linear;
+}
+
+.things_container__search input:focus {
+    border-color: rgb(46, 46, 46);
+}
+
+.things_container__search button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.things_container__search svg {
+    width: 30px;
+    height: 30px;
+    color: rgb(156, 177, 177);
+}
+
+.things_container__search svg:hover {
+    color: rgb(135, 155, 155);
+}
+
+.things_container__things_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     column-gap: 30px;
-    flex-wrap: wrap;
     row-gap: 30px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .category_things__thing {
     position: relative;
+    width: 320px;
+    height: 480px;
     background-color: rgb(104, 132, 133);
     box-shadow: 0 0 10px rgb(104, 132, 133);
     border-radius: 5px;
@@ -22,8 +78,16 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 30px;
     row-gap: 20px;
+    padding: 0 20px 30px;
+    cursor: pointer;
+
+    transition: all .1s linear;
+}
+
+.category_things__thing:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 20px rgb(104, 132, 133);
 }
 
 .thing__name {
@@ -32,6 +96,25 @@
     align-items: center;
     justify-content: center;
 }
+
+.name__imgs {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    width: 180px;
+    height: 180px;
+}
+
+.name__imgs img {
+    width: 180px;
+    height: 180px;
+    padding: 0;
+    margin: 0;
+}
+
+.name__imgs:hover img:first-child {
+    display: none;
+} 
 
 .name__title {
     color: rgb(31, 30, 30);
@@ -46,9 +129,97 @@
     color: rgb(238, 238, 238);
 }
 
-.thing__name img {
-    width: 200px;
-    height: 200px;
+.thing__description {
+    width: 100%;
+    background-color: rgb(97, 120, 121);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Rubik', sans-serif;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+    row-gap: 3px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.description__in_having {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.description__made_in {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.description__sizes {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.description__sizes span {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.description__sizes input[type="radio"] {
+    display: none;
+}
+
+.description__sizes form {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+}
+
+.sizes__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 3px;
+    position: relative;
+    width: 30px;
+    height: 22px;
+    border: 2px solid rgb(0, 0, 0);
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
+    
+    transition: all .1s linear;
+}
+
+.sizes__label:hover {
+    color: rgb(31, 30, 30);
+    border-color: rgb(31, 30, 30);
+}
+
+.sizes__label_active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 3px;
+    position: relative;
+    width: 30px;
+    height: 22px;
+    font-family: 'Rubik', sans-serif;
+    cursor: pointer;
+    border: 2px solid rgb(129, 20, 20);
+    color: rgb(129, 20, 20);
+    
+    transition: all .1s linear;
 }
 
 .thing__price {
@@ -60,10 +231,10 @@
 }
 
 .price__price {
-    font-weight: 700;
+    font-weight: 600;
     font-family: 'Rubik', sans-serif;
     color: rgb(0, 0, 0);
-    font-size: 18px;
+    font-size: 19px;
 }
 
 .price__buy_btn {

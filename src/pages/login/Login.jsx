@@ -1,6 +1,7 @@
-import { useState, useEffect} from "react"
+import {useState, useEffect} from "react"
 import {jwtDecode} from "jwt-decode"
-import { Link, useNavigate } from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
+import {BeatLoader} from "react-spinners"
 import Header from "./../../components/header/Header"
 import Footer from "./../../components/footer/Footer"
 import "./login.css"
@@ -8,6 +9,8 @@ import "./login.css"
 const Login = () => {
     let [user, setUser] = useState(() => (localStorage.getItem("JWT") ? jwtDecode(localStorage.getItem("JWT")) : null))
     let [tokens, setTokens] = useState(() => (localStorage.getItem("JWT") ? JSON.parse(localStorage.getItem("JWT")) : null))
+    const [loading, setLoading] = useState()
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -15,6 +18,8 @@ const Login = () => {
     }, [])
 
     let loginUser = async (e) => {
+        setLoading(true)
+
         try {
             e.preventDefault()
 
@@ -40,6 +45,8 @@ const Login = () => {
             } else {
                 alert('Неправильный пароль!')
             }
+
+            setLoading(false)
         } catch(err) {
             console.log(err)
         }
@@ -57,7 +64,7 @@ const Login = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
 
-                            Войти
+                            ВОЙТИ
                         </span>
                     </div>
                     
@@ -70,10 +77,9 @@ const Login = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                             </svg>
                             
-                            <label className="placeholder" htmlFor="email">email</label>
+                            <label className="placeholder" htmlFor="email">EMAIL</label>
                         </div>
                         
-
                         <div className="login_form__password_block">
                             <input className="login_form__email" type="password" name="password" autoComplete="off" placeholder=" " />
 
@@ -81,7 +87,11 @@ const Login = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
                             </svg>
 
-                            <label className="placeholder" htmlFor="email">пароль</label>
+                            <label className="placeholder" htmlFor="email">ПАРОЛЬ</label>
+
+                            <Link className="password_block__forgot_password" to="/forgot-password">
+                                Забыли пароль?
+                            </Link>
                         </div>
 
                         <div className="login_form__register_block">
@@ -97,7 +107,20 @@ const Login = () => {
                         </div>
                         
                         <div className="login_form__btn_block">
-                            <button method="submit">Войти</button>
+                            <button method="submit">
+                                Войти
+
+                                {
+                                    loading 
+                                        ?
+                                    <BeatLoader
+                                        color="rgba(238, 238, 238, 0.795)"
+                                        size={5}
+                                    />
+                                        :
+                                    null
+                                }
+                            </button>
                         </div>                    
                     </form>
                 </div>

@@ -1,0 +1,22 @@
+.not_found {
+    background-color: rgb(104, 132, 133);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 160px;
+    position: relative;
+}
+
+.not_found__img {
+    width: 500px;
+    height: 500px;
+}
+
+.not_found__text {
+    position: absolute;
+    left: 39.5%;
+    top: 90px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+}

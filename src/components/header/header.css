@@ -1,4 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
@@ -35,7 +34,8 @@
     height: 65%;
 }
 
-.container__nav a {
+.nav__link {
+    color: rgb(0, 0, 0);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,8 +46,14 @@
     font-family: 'Rubik', sans-serif;
 }
 
-.normal_link {
-    color: rgb(0, 0, 0);
+.nav__link svg {
+    width: 22px;
+    height: 22px;
+    margin-right: 3px;
+}
+
+.nav__link:hover {
+    color: rgb(0, 68, 68);
 }
 
 /* .cart_len {
@@ -64,10 +70,6 @@
     color: rgb(0, 0, 0);
     font-family: 'Rubik', sans-serif;
 } */
-
-.container__nav a:hover {
-    color: rgb(0, 68, 68);
-}
 
 @keyframes activeLink {
     from {
@@ -89,14 +91,22 @@
     }
 }
 
-.active {
+.nav__link_active {
     position: relative;
     color: rgb(0, 68, 68);
     padding: 0 0 2.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Rubik', sans-serif;
+
     animation: activeLinkColor .2s linear;
 }
 
-.active::after {
+.nav__link_active::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -106,7 +116,7 @@
     animation: activeLink .2s linear;
 }
 
-.container__nav svg {
+.nav__link_active svg {
     width: 22px;
     height: 22px;
     margin-right: 3px;
@@ -173,6 +183,7 @@
 .is_authenticated__user_options span {
     font-size: 15px;
     text-transform: none;
+    font-weight: 600;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -180,9 +191,17 @@
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    object-fit: cover;
+    object-position: center;
+}
+
+.user_not_authenticated {
+    cursor: pointer;
+    transition: opacity .2s linear;
+}
+
+.user_not_authenticated:hover {
+    opacity: .8;
 }
 
 .go_to_login {
@@ -191,6 +210,21 @@
     justify-content: center;
     text-align: center;
     color: rgb(0, 0, 0);
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color .2s linear;    
+    font-family: 'Rubik', sans-serif;
+}
+
+.go_to_login svg {
+    width: 22px;
+    height: 22px;
+    margin-right: 3px;
+}
+
+.go_to_login:hover {
+    color: rgb(0, 68, 68);
 }
 
 .user_container__dropdown_user_options {
@@ -208,6 +242,71 @@
     border-bottom-right-radius: 4px;
     animation: showDropDownUserMenu .3s linear forwards;
     padding: 5px 10px;
+}
+
+.user_container__dropdown_user_options button:hover {
+    background-color: rgb(122, 148, 148);
+}
+
+.dropdown_user_options__user_settings {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 1px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 3px 5px;
+    cursor: pointer;
+    background: transparent;
+    transition: all .2s linear;
+    border-radius: 3px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.dropdown_user_options__user_settings:hover {
+    background-color: rgb(122, 148, 148);
+}
+
+.dropdown_user_options__user_settings:hover svg {
+    transform: rotate(30deg);
+}
+
+.dropdown_user_options__user_settings svg {
+    transition: transform .2s linear;
+    width: 22px;
+    height: 22px;
+}
+
+.dropdown_user_options__purchases {
+    width: 100%;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 1px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 3px 5px;
+    cursor: pointer;
+    background: transparent;
+    transition: all .2s linear;
+    border-radius: 3px;
+}
+
+.dropdown_user_options__purchases:hover {
+    background-color: rgb(122, 148, 148);
+}
+
+.dropdown_user_options__purchases svg {
+    width: 22px;
+    height: 22px;
 }
 
 .user_container__dropdown_user_options button {
@@ -228,26 +327,9 @@
 }
 
 .user_container__dropdown_user_options button:hover {
-    background-color: rgb(122, 148, 148);
-}
-
-.dropdown_user_options__imgs {
-    width: 27px;
-    height: 27px;
-}
-
-.user_container__dropdown_user_options button:last-child:hover {
     color: rgb(155, 31, 31);
 }
 
-.user_container__dropdown_user_options button:last-child svg {
+.user_container__dropdown_user_options button svg {
     transform: rotate(180deg);
-}
-
-.user_container__dropdown_user_options button:nth-child(1) svg {
-    transition: transform .2s linear;
-}
-
-.user_container__dropdown_user_options button:nth-child(1):hover svg {
-    transform: rotate(30deg);
 }

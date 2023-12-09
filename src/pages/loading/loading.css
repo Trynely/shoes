@@ -1,0 +1,7 @@
+.loading_spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    margin-top: 200px;
+}

@@ -11,7 +11,9 @@ import CategoryThing from './pages/category-thing/CategoryThing'
 import Test from './pages/test/Test'
 import CartWishlistLength from './components/items-length/CartWishlistLen'
 import Wishlist from './pages/wishlist/Wishlist'
-
+import ForgotPassword from './pages/reset-password/ForgotPassword'
+import Settings from './pages/user-settings/UserSettings'
+import ResetPassword from './pages/reset-password/ResetPassword'
 
 const App = () => {
     return (
@@ -24,9 +26,12 @@ const App = () => {
                         <Route element={<Cart/>} path="/cart" />
                         <Route element={<Login/>} path="/login" />
                         <Route element={<Register/>} path='/register' />
+                        <Route element={<ForgotPassword/>} path='/forgot-password' />
+                        <Route element={<ResetPassword/>} path='/password/reset/:uid/:token' />
                         <Route element={<CategoryThing/>} path='/category/:category' />
                         <Route element={<Thing/>} path='/things/:id' />
                         <Route element={<Test/>} path='/test' />
+                        <Route element={<Settings/>} path='/user-settings' />
                         <Route element={<Wishlist/>} path='/wishlist' />
                     </Routes>
                 </CartWishlistLength>
