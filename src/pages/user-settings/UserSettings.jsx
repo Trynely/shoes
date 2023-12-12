@@ -1,3 +1,4 @@
+import axios from "axios"
 import {AuthenticationContext} from "../../components/authentication/Authentication"
 import {useState, useEffect, useContext, useRef} from "react"
 import Header from "./../../components/header/Header"
@@ -5,11 +6,10 @@ import Footer from "../../components/footer/Footer"
 import "./user-settings.css"
 
 const Settings = () => {
-    const {tokens, user} = useContext(AuthenticationContext)
+    const {tokens, user, avatar, setAvatar, userAvatar} = useContext(AuthenticationContext)
     const fileRef = useRef(null)
 
     const [validation, setValidation] = useState("")
-    const [avatar, setAvatar] = useState([])
     const [windowActive, setWindowActive] = useState(false)
     const [showPasswordOne, setShowPasswordOne] = useState(false)
     const [showPasswordTwo, setShowPasswordTwo] = useState(false)
@@ -19,12 +19,6 @@ const Settings = () => {
     useEffect(() => {
         document.title = "Настройки пользователя"
     }, [])
-    
-    useEffect(() => {
-        if(user) {
-            Avatar()
-        }
-    }, [user]) // was []
 
     const ShowWindow = () => {
         if(windowActive === false) {
@@ -68,78 +62,75 @@ const Settings = () => {
         }
     }
 
-    const Avatar = async () => {
+    const setImageAvatar = (event) => {
+        event.preventDefault()
+
         const user_id = user.user_id
+        const img = event.target.files[0]
 
-        try {
-            const response = await fetch(`http://127.0.0.1:8000/api/avatar/${user_id}/`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + String(tokens.access)
-                }
-            })
+        const formData = new FormData()
+        formData.append('img', img)
 
-            const data = await response.json()
+        axios({
+            method: "put",
+            url: `http://127.0.0.1:8000/api/avatar/${user_id}/`,
+            headers: {
+                "Authorization": "Bearer " + String(tokens.access)
+            },
+            data: formData
+        }).then((response) => {
+            const data = response.data
             
             if(response.status === 200) {
                 setAvatar(data)
-                localStorage.setItem('Img', JSON.stringify(data))
-            } else {
-                localStorage.removeItem('Img')
-            }  
-        } catch(err) {
-            console.log(err)
-        }
+            }
+        })
     }
 
-    const setImageAvatar = async (event) => {
+    const deleteImageAvatar = () => {
         const user_id = user.user_id
 
-        try {
-            event.preventDefault()
-
-            const img = event.target.files[0]
-
-            const formData = new FormData()
-            formData.append('img', img)
-
-            const response = await fetch(`http://127.0.0.1:8000/api/avatar/${user_id}/`, {
-                method: "PUT",
-                headers: {
-                    "Authorization": "Bearer " + String(tokens.access)
-                },
-                body: formData
-            })
-
-            const data = await response.json()
-
+        axios({
+            method: "put",
+            url: `http://127.0.0.1:8000/api/avatar/${user_id}/`,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + String(tokens.access)
+            },
+            data: {
+                img: null
+            }
+        }).then((response) => {
+            const data = response.data
+            
             if(response.status === 200) {
                 setAvatar(data)
             }
-        } catch(err) {
-            console.log(err)
-        }
+        })
     }
 
-    const ChangePassword = async (event) => {
+    const changePassword = (event) => {
         event.preventDefault()
 
-        const response = await fetch("http://127.0.0.1:8000/auth/users/set_password/", {
-            method: 'POST',
+        axios({
+            method: "post",
+            url: "http://127.0.0.1:8000/auth/users/set_password/",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + String(tokens.access)
             },
-            body: JSON.stringify({new_password: event.target.new_password.value, re_new_password: event.target.re_new_password.value, current_password: event.target.current_password.value})
+            data: {
+                new_password: event.target.new_password.value,
+                re_new_password: event.target.re_new_password.value,
+                current_password: event.target.current_password.value
+            }
+        }).then((response) => {
+            if(response.status === 204) {
+                setValidation("Пароль успешно изменён")
+            } else {
+                setValidation("Не удалось изменить пароль")
+            }
         })
-        
-        if(response.status === 204) {
-            setValidation("Пароль успешно изменён")
-            window.location.reload()
-        } else {
-            setValidation("Не удалось изменить пароль")
-        }
 
         setTimeout(() => {
             setValidation(null)
@@ -154,7 +145,19 @@ const Settings = () => {
                 <div className="user_settings__container">
                     <div className="container__user_edits">
                         <div className="user_edits__avatar">
-                            <img src={avatar.img} alt="" />
+                            <button style={avatar.img === null ? {display: "none"} : {display: "flex"}} onClick={deleteImageAvatar} className="avatar__delete_avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+
+                            {
+                                avatar.img === null
+                                    ?
+                                <img src="/null-image.jpg" alt="" />
+                                    :
+                                <img src={avatar.img} alt="" />
+                            }
                             
                             <button className="avatar__edit" onClick={() => fileRef.current.click()}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
@@ -179,7 +182,7 @@ const Settings = () => {
                     </div>
 
                     <div style={windowActive ? {display: "flex"} : style} className="container__settings_window">
-                        <form onSubmit={ChangePassword}>
+                        <form onSubmit={changePassword}>
                             <span className="settings_window__form_label">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />

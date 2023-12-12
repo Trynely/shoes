@@ -1,16 +1,10 @@
-import "./../../styles/main.css"
-import {useState, useEffect, useContext, useRef} from 'react'
+import axios from "axios"
+import {useState, useEffect} from 'react'
 import React from "react"
 import {Link} from "react-router-dom"
-import {AuthenticationContext} from "../authentication/Authentication"
 import "./middle.css"
-// import "slick-carousel/slick/slick.css"
-// import "slick-carousel/slick/slick-theme.css"
 
 function Middle() {
-    useContext(AuthenticationContext)
-
-    // const [things, setThings] = useState([])
     const [activeIndex, setActiveIndex] = useState(0)
     const [welcome, setWelcome] = useState(false)
     const [categories, setCategories] = useState()
@@ -27,17 +21,17 @@ function Middle() {
         return () => clearInterval(interval)
     }, [welcome])
 
-    const Categories = async () => {
-        try {
-            const response = await fetch("http://127.0.0.1:8000/category/")
-            const data = await response.json()
+    const Categories = () => {
+        axios({
+            method: "get",
+            url: "http://127.0.0.1:8000/category/"
+        }).then((response) => {
+            const data = response.data
 
             if(response.status === 200) {
                 setCategories(data)
             }
-        } catch(err) {
-            console.log(err)
-        }
+        })
     }
 
     const welcomeSlider = () => {
@@ -54,58 +48,21 @@ function Middle() {
         } else if (position >= 1) {
             position = 1
         }
+
         setActiveIndex(position)
     }
-
-    // function delThing(id) {
-    //     axios.delete(`http://127.0.0.1:8000/things/${id}/`)
-    //     window.location.reload()
-    // }
-
-    // --------------------------------------------------------------------------------
-    // ДЛЯ ПОЛЬЗОВАТЕЛЯ
-
-    // const userThings = async () => {
-    //     try {
-    //         const response = await fetch('http://127.0.0.1:8000/things/', {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Authorization': 'Bearer ' + String(tokens.access)
-    //             }
-    //         })
-
-    //         let data = await response.json()
-
-    //         if(response.status === 200) {
-    //             setThings(data)
-    //         } else if(response.statusText === "Unauthorized") {
-    //             logOut()
-    //             window.location.reload()
-    //         }
-            
-    //     } catch(err) {
-    //         console.log("error userthings >>", err)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     if(tokens) {
-    //         userThings()
-    //     }
-    // }, [tokens])
     
     // ---------------------------------------
     
     return (
-        <main className='content'>
+        <div className='content'>
             <div className='content__container'>
                 <div className="container__welcome_slider">
                     <img style={welcome ? {display: "none"} : {display: "block"}} src="/welcome-1.jpg" alt="" />
                     <img style={welcome ? {display: "block"} : {display: "none"}} src="/welcome-2.jpg" alt="" />
                 </div>
 
-                { 
+                {
                     categories 
                         ?
                     <div className="container__slider">
@@ -137,7 +94,7 @@ function Middle() {
                     null
                 }
             </div>
-        </main>
+        </div>
     )
 }
 

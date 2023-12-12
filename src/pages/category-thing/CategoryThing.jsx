@@ -1,3 +1,4 @@
+import axios from "axios"
 import {Link, useParams} from "react-router-dom"
 import {useContext, useEffect, useRef, useState} from "react"
 import {Toaster, toast} from 'sonner'
@@ -50,51 +51,48 @@ export const CategoryThing = () => {
         setCheckWishlist(wishlistObjects)
     }, [thingsOfCart, thingsOfWishlist])
 
-    const thingsCat = async () => {
-        const response = await fetch(`http://127.0.0.1:8000/category/${category}/`)
-        
-        const data = await response.json()
+    const thingsCat = () => {
+        axios({
+            method: "get",
+            url: `http://127.0.0.1:8000/category/${category}/`
+        }).then((response) => {
+            const data = response.data
 
-        if (response.status === 200) {
-            setThings(data)
-        }
+            if(response.status === 200) {
+                setThings(data)
+            }
+        })
     }
 
-    const cartThingsAdd = async (id) => {
-        try {
-            const response = await fetch(`http://127.0.0.1:8000/add-to-cart/${id}/`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + String(tokens.access)
-                }
-            })
-
-            if (response.status === 200) {
+    const cartThingsAdd = (id) => {
+        axios({
+            method: "get",
+            url: `http://127.0.0.1:8000/add-to-cart/${id}/`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + String(tokens.access)
+            }
+        }).then((response) => {
+            if(response.status === 200) {
                 cartThingsLen()
             }
-        } catch (err) {
-            console.log("error userthings >>", err)
-        }
+        })
     }
 
-    const wishlistThingsAdd = async (id) => {
-        try {
-            const response = await fetch(`http://127.0.0.1:8000/add-to-wishlist/${id}/`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + String(tokens.access)
-                }
-            })
-
-            if (response.status === 200) {
+    const wishlistThingsAdd = (id) => {
+        axios({
+            method: "get",
+            url: `http://127.0.0.1:8000/add-to-wishlist/${id}/`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + String(tokens.access)
+            }
+        }).then((response) => {
+            if(response.status === 200) {
                 wishlistThingsLen()
                 setWishlistActiv('favorites_heart__active')
             }
-        } catch (err) {
-            console.log("error userthings >>", err)
-        }
+        })
     }
 
     useEffect(() => {
@@ -134,9 +132,7 @@ export const CategoryThing = () => {
                                             <img src={thing.two_img} alt="" />
                                         </div>
 
-                                        <span className="name__title">{thing.title}</span>
-
-                                        {/* <Link className="name__title" to={`/things/${thing.id}`}>{thing.title}</Link> */}
+                                        <Link className="name__title" to={`/things/${thing.id}`}>{thing.title}</Link>
                                     </div>
 
                                     <div className="thing__description">

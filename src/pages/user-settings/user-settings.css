@@ -25,8 +25,33 @@
 }
 
 .user_edits__avatar {
+    position: relative;
     display: flex;
     flex-direction: column;
+}
+
+.avatar__delete_avatar {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: rgb(41, 41, 41);
+    cursor: pointer;
+}
+
+.avatar__delete_avatar svg {
+    color: rgba(224, 224, 224, 0.836);
+
+    transition: color .1s linear;
+}
+
+.avatar__delete_avatar svg:hover {
+    color: rgb(255, 255, 255);
 }
 
 .user_edits__avatar img {

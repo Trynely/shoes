@@ -30,14 +30,16 @@
     font-family: 'Rubik', sans-serif;
     padding: 0 10px;
     border: 2px solid var(--main-color);
-    background-color: rgb(156, 177, 177);
+    box-shadow: 0 0 6px rgb(104, 132, 133);
+    background-color: rgb(113, 139, 139);
     font-weight: 600;
 
     transition: all .1s linear;
 }
 
 .things_container__search input:focus {
-    border-color: rgb(46, 46, 46);
+    border-color: rgb(156, 180, 180);
+    box-shadow: none;
 }
 
 .things_container__search button {
@@ -49,7 +51,7 @@
 .things_container__search svg {
     width: 30px;
     height: 30px;
-    color: rgb(156, 177, 177);
+    color: rgb(113, 139, 139);
 }
 
 .things_container__search svg:hover {
@@ -68,6 +70,7 @@
 
 .category_things__thing {
     position: relative;
+    text-decoration: none;
     width: 320px;
     height: 480px;
     background-color: rgb(104, 132, 133);
@@ -80,14 +83,12 @@
     text-align: center;
     row-gap: 20px;
     padding: 0 20px 30px;
-    cursor: pointer;
 
     transition: all .1s linear;
 }
 
 .category_things__thing:hover {
-    transform: scale(1.01);
-    box-shadow: 0 0 20px rgb(104, 132, 133);
+    box-shadow: 0 0 15px rgb(104, 132, 133);
 }
 
 .thing__name {
@@ -101,14 +102,16 @@
     display: flex;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
 }
 
 .name__imgs img {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     padding: 0;
+    object-fit: cover;
+    object-position: center;
     margin: 0;
 }
 
@@ -147,12 +150,14 @@
     font-size: 13px;
     text-transform: uppercase;
     font-weight: 600;
+    color: #000;
 }
 
 .description__made_in {
     font-size: 13px;
     text-transform: uppercase;
     font-weight: 600;
+    color: #000;
 }
 
 .description__sizes {
@@ -160,6 +165,7 @@
     column-gap: 5px;
     align-items: center;
     margin-top: 10px;
+    color: #000;
 }
 
 .description__sizes span {
