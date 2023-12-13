@@ -333,3 +333,31 @@
 .user_container__dropdown_user_options button svg {
     transform: rotate(180deg);
 }
+
+.container__phone_menu {
+    display: none;
+}
+
+.container__phone_menu button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+
+.container__phone_menu svg {
+    width: 45px;
+    height: 45px;
+}
+
+@media (max-width: 1306px) {
+    .container__nav {
+        display: none;
+    }
+
+    .container__phone_menu {
+        display: flex;
+        align-items: flex-end;
+        height: 100%;
+    }
+}

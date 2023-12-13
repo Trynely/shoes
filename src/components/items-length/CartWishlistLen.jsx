@@ -1,3 +1,4 @@
+import axios from "axios"
 import {createContext, useEffect, useState} from "react"
 import {useContext} from "react"
 import {AuthenticationContext} from "../authentication/Authentication"
@@ -17,44 +18,38 @@ const CartWishlistLength = ({children}) => {
         }
     }, [tokens])
 
-    const cartThingsLen = async () => {
-        try {
-            const response = await fetch('http://127.0.0.1:8000/cart/', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + String(tokens.access)
-                }
-            })
-    
-            let data = await response.json()
-    
+    const cartThingsLen = () => {
+        axios({
+            method: "get",
+            url: "http://127.0.0.1:8000/cart/",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + String(tokens.access)
+            }
+        }).then((response) => {
+            const data = response.data
+            
             if(response.status === 200) {
                 setCartThings(data)
             }
-        } catch(err) {
-            console.log("error userthings >>", err)
-        }
+        })
     }
 
-    const wishlistThingsLen = async () => {
-        try {
-            const response = await fetch('http://127.0.0.1:8000/wishlist/', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + String(tokens.access)
-                }
-            })
-    
-            let data = await response.json()
-    
+    const wishlistThingsLen = () => {
+        axios({
+            method: "get",
+            url: "http://127.0.0.1:8000/wishlist/",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + String(tokens.access)
+            }
+        }).then((response) => {
+            const data = response.data
+            
             if(response.status === 200) {
                 setWishlistThings(data)
             }
-        } catch(err) {
-            console.log("error userthings >>", err)
-        }
+        })
     }
 
     const items = {
