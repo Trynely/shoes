@@ -231,9 +231,9 @@
     background-color: rgb(113, 139, 139);
     display: none;
     position: absolute;
-    bottom: -120px;
+    bottom: -140px;
     width: 100%;
-    height: 120px;
+    height: 140px;
     flex-direction: column;
     row-gap: 5px;
     align-items: center;

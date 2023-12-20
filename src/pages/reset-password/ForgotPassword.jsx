@@ -2,8 +2,8 @@ import {useState, useEffect} from "react"
 import {Link} from "react-router-dom"
 import Header from "../../components/header/Header" 
 import Footer from "../../components/footer/Footer"
-import "./reset-password.css"
 import {BeatLoader} from "react-spinners"
+import "./reset-password.css"
 
 const ForgotPassword = () => {
     const [validation, setValidation] = useState("")
