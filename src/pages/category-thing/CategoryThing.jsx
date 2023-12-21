@@ -8,6 +8,7 @@ import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import Toast from "../../components/toast/Toast"
 import "./category-things.css"
+import Wishlist from "../wishlist/Wishlist"
 // import {useToaster, Toaster, toast} from "react-hot-toast"
 
 export const CategoryThing = () => {
@@ -240,6 +241,8 @@ export const CategoryThing = () => {
                     </div>
                 </div>
             </div>
+
+            <Wishlist />
 
             <Footer />
 

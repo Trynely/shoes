@@ -2,6 +2,7 @@ import {useEffect } from "react"
 import Middle from "./../../components/middle/Midlle"
 import Header from "./../../components/header/Header"
 import Footer from "../../components/footer/Footer"
+import Wishlist from "../wishlist/Wishlist"
 import "./../../styles/main.css"
 
 
@@ -14,6 +15,7 @@ function Home() {
         <>
             <Header/>
             <Middle/>
+            <Wishlist />
             <Footer/>
         </>
     )

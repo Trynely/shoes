@@ -1,7 +1,7 @@
 import axios from "axios"
 import {useState, useEffect} from 'react'
-import React from "react"
 import {Link} from "react-router-dom"
+import React from "react"
 import "./middle.css"
 
 function Middle() {
@@ -51,8 +51,6 @@ function Middle() {
 
         setActiveIndex(position)
     }
-    
-    // ---------------------------------------
     
     return (
         <div className='content'>

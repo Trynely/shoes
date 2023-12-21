@@ -32,7 +32,6 @@ const App = () => {
                         <Route element={<Thing/>} path='/things/:id' />
                         <Route element={<Test/>} path='/test' />
                         <Route element={<Settings/>} path='/user-settings' />
-                        <Route element={<Wishlist/>} path='/wishlist' />
                     </Routes>
                 </CartWishlistLength>
             </Authentication>

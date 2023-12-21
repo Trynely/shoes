@@ -4,6 +4,7 @@ import {useState, useEffect, useContext, useRef} from "react"
 import Header from "./../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import "./user-settings.css"
+import Wishlist from "../wishlist/Wishlist"
 
 const Settings = () => {
     const {tokens, user, avatar, setAvatar, userAvatar} = useContext(AuthenticationContext)
@@ -249,6 +250,8 @@ const Settings = () => {
                     </div>
                 </div>
             </div>
+            
+            <Wishlist />
 
             <Footer/>
         </>

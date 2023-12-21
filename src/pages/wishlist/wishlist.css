@@ -1,0 +1,37 @@
+@keyframes showWishlistItems {
+    from {
+        transform: translateX(100px);
+        opacity: 0
+    }
+
+    to {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+.wishlist {
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+}
+
+.wishlist__container {
+    margin-top: 144px;
+    position: fixed;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    min-height: 80vh;
+    background-color: rgb(113, 139, 139);
+    scroll-behavior: smooth;
+    box-shadow: 0 0 3px rgb(147, 179, 179);
+
+    animation: showWishlistItems .2s linear forwards;
+}

@@ -8,10 +8,11 @@ import Footer from "./../../components/footer/Footer"
 import NotFound from "./../not-found/NotFound"
 import Loading from "../loading/Loading"
 import "./cart.css"
+import Wishlist from "../wishlist/Wishlist"
 
 const Cart = () => {
     const {tokens, user, logoutUser} = useContext(AuthenticationContext)
-    const {cartThingsLen} = useContext(CartWishlistLengthContext)
+    const {cartThingsLen, wishlistActive} = useContext(CartWishlistLengthContext)
 
     const [thingsOfCart, setCartThings] = useState([])
     const [totalPrice, setTotalPrice] = useState([])
@@ -225,6 +226,8 @@ const Cart = () => {
                     }               
                 </div>
             }
+
+            <Wishlist />
         
             <Footer />
         </>

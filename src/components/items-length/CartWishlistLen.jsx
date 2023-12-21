@@ -10,6 +10,7 @@ const CartWishlistLength = ({children}) => {
 
     const [thingsOfCart, setCartThings] = useState([])
     const [thingsOfWishlist, setWishlistThings] = useState([])
+    const [wishlistActive, setWishlistActive] = useState(false)
 
     useEffect(() => {
         if(user) {
@@ -58,6 +59,9 @@ const CartWishlistLength = ({children}) => {
 
         wishlistThingsLen: wishlistThingsLen,
         thingsOfWishlist: thingsOfWishlist,
+
+        setWishlistActive: setWishlistActive,
+        wishlistActive: wishlistActive,
     }
 
     return (
