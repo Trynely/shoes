@@ -3,7 +3,7 @@ import {Link, useParams} from "react-router-dom"
 import {useContext, useEffect, useRef, useState} from "react"
 import {Toaster, toast} from 'sonner'
 import {AuthenticationContext} from "../../components/authentication/Authentication"
-import {CartWishlistLengthContext} from "../../components/items-length/CartWishlistLen"
+import {CartWishlistContext} from "../../components/items-length/CartWishlistLen"
 import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import Toast from "../../components/toast/Toast"
@@ -13,7 +13,7 @@ import Wishlist from "../wishlist/Wishlist"
 
 export const CategoryThing = () => {
     const {tokens, user} = useContext(AuthenticationContext)
-    const {thingsOfCart, cartThingsLen, thingsOfWishlist, wishlistThingsLen} = useContext(CartWishlistLengthContext)
+    const {thingsOfCart, thingsOfWishlist, cartThings, wishlistThings} = useContext(CartWishlistContext)
 
     const {category} = useParams()
 
@@ -28,7 +28,7 @@ export const CategoryThing = () => {
     const [things, setThings] = useState([])
     const [checkCart, setCheckCart] = useState([])
     const [checkWishlist, setCheckWishlist] = useState([])
-    const [wishlistActiv, setWishlistActiv] = useState()
+    const [wishlistActiv, setWishlistActive] = useState()
     const [checkSize, setCheckSize] = useState([])
     const [labelActive, setLabelActive] = useState(null)
 
@@ -75,7 +75,7 @@ export const CategoryThing = () => {
             }
         }).then((response) => {
             if(response.status === 200) {
-                cartThingsLen()
+                cartThings()
             }
         })
     }
@@ -90,8 +90,8 @@ export const CategoryThing = () => {
             }
         }).then((response) => {
             if(response.status === 200) {
-                wishlistThingsLen()
-                setWishlistActiv('favorites_heart__active')
+                wishlistThings()
+                setWishlistActive('favorites_heart__active')
             }
         })
     }

@@ -2,7 +2,7 @@ import {useEffect, useState} from "react"
 import {useContext} from "react"
 import {AuthenticationContext} from "../../components/authentication/Authentication"
 import {Link} from "react-router-dom"
-import {CartWishlistLengthContext} from "../../components/items-length/CartWishlistLen"
+import {CartWishlistContext} from "../../components/items-length/CartWishlistLen"
 import Header from "../../components/header/Header"
 import Footer from "./../../components/footer/Footer"
 import NotFound from "./../not-found/NotFound"
@@ -12,18 +12,13 @@ import Wishlist from "../wishlist/Wishlist"
 
 const Cart = () => {
     const {tokens, user, logoutUser} = useContext(AuthenticationContext)
-    const {cartThingsLen, wishlistActive} = useContext(CartWishlistLengthContext)
+    const {cartThings, thingsOfCart} = useContext(CartWishlistContext)
 
-    const [thingsOfCart, setCartThings] = useState([])
     const [totalPrice, setTotalPrice] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         document.title = "Корзина"
-        
-        if(user) {
-            cartThings()
-        }
     }, [])
 
     useEffect(() => {
@@ -55,29 +50,6 @@ const Cart = () => {
         sum()
     }, [thingsOfCart])
 
-    const cartThings = async () => {
-        try {
-            const response = await fetch('http://127.0.0.1:8000/cart/', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + String(tokens.access)
-                }
-            })
-    
-            const data = await response.json()
-    
-            if(response.status === 200) {
-                setCartThings(data)
-            } else if(response.statusText === "Unauthorized") {
-                logoutUser()
-                window.location.reload()
-            }
-        } catch(err) {
-            console.log("error userthings >>", err)
-        }
-    }
-
     const cartThingsIncrease = async (id) => {
         try {
             const response = await fetch(`http://127.0.0.1:8000/increase-thing-cart/${id}/`, {
@@ -90,7 +62,6 @@ const Cart = () => {
 
             if(response.status === 200) {
                 cartThings()
-                cartThingsLen()
             }
         } catch(err) {
             console.log("error userthings >>", err)
@@ -109,7 +80,6 @@ const Cart = () => {
 
             if(response.status === 200) {
                 cartThings()
-                cartThingsLen()
             }
         } catch(err) {
             console.log("error userthings >>", err)
@@ -128,7 +98,6 @@ const Cart = () => {
 
             if(response.status === 200) {
                 cartThings()
-                cartThingsLen()
             }
         } catch(err) {
             console.log("error userthings >>", err)
@@ -147,7 +116,6 @@ const Cart = () => {
 
             if(response.status === 200) {
                 cartThings()
-                cartThingsLen()
             }
         } catch(err) {
             console.log("error userthings >>", err)

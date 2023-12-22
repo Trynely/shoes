@@ -1,12 +1,12 @@
 import {Link, NavLink} from "react-router-dom"
 import {useContext, useEffect, useState} from 'react'
 import {AuthenticationContext} from "../authentication/Authentication"
-import {CartWishlistLengthContext} from "../items-length/CartWishlistLen"
+import {CartWishlistContext} from "../items-length/CartWishlistLen"
 import "./header.css"
 
 const Header = () => {
     const {user, avatar, logoutUser} = useContext(AuthenticationContext)
-    const {thingsOfWishlist, wishlistActive, setWishlistActive} = useContext(CartWishlistLengthContext)
+    const {thingsOfWishlist, wishlistActive, setWishlistActive} = useContext(CartWishlistContext)
 
     useEffect(() => {
         console.log(wishlistActive)

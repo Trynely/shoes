@@ -3,9 +3,9 @@ import {createContext, useEffect, useState} from "react"
 import {useContext} from "react"
 import {AuthenticationContext} from "../authentication/Authentication"
 
-export const CartWishlistLengthContext = createContext()
+export const CartWishlistContext = createContext()
 
-const CartWishlistLength = ({children}) => {
+const CartWishlist = ({children}) => {
     const {tokens, user} = useContext(AuthenticationContext)
 
     const [thingsOfCart, setCartThings] = useState([])
@@ -14,61 +14,65 @@ const CartWishlistLength = ({children}) => {
 
     useEffect(() => {
         if(user) {
-            cartThingsLen()
-            wishlistThingsLen()
+            cartThings()
+            wishlistThings()
         }
     }, [tokens])
 
-    const cartThingsLen = () => {
+    const cartThings = () => {
         axios({
-            method: "get",
-            url: "http://127.0.0.1:8000/cart/",
+            method: 'get',
+            url: 'http://127.0.0.1:8000/cart/',
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + String(tokens.access)
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + String(tokens.access)
             }
         }).then((response) => {
             const data = response.data
-            
+
             if(response.status === 200) {
                 setCartThings(data)
+            } else {
+                setCartThings(null)
             }
         })
     }
 
-    const wishlistThingsLen = () => {
+    const wishlistThings = () => { 
         axios({
-            method: "get",
-            url: "http://127.0.0.1:8000/wishlist/",
+            method: 'get',
+            url: 'http://127.0.0.1:8000/wishlist/',
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + String(tokens.access)
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + String(tokens.access)
             }
         }).then((response) => {
             const data = response.data
-            
+
             if(response.status === 200) {
                 setWishlistThings(data)
+            } else {
+                setWishlistThings(null)
             }
         })
     }
-
+    
     const items = {
-        cartThingsLen: cartThingsLen,
         thingsOfCart: thingsOfCart,
-
-        wishlistThingsLen: wishlistThingsLen,
         thingsOfWishlist: thingsOfWishlist,
 
         setWishlistActive: setWishlistActive,
         wishlistActive: wishlistActive,
+
+        cartThings: cartThings,
+        wishlistThings: wishlistThings
     }
 
     return (
-        <CartWishlistLengthContext.Provider value={items}>
+        <CartWishlistContext.Provider value={items}>
             {children}
-        </CartWishlistLengthContext.Provider>
+        </CartWishlistContext.Provider>
     )
 }
 
-export default CartWishlistLength
+export default CartWishlist
