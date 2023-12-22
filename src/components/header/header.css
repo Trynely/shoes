@@ -373,6 +373,10 @@
     height: 25px;
 }
 
+.nav__wishlisht button:hover {
+    opacity: .5;
+}
+
 .nav__wishlisht button span {
     position: absolute;
     bottom: 0;
