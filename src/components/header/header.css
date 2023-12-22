@@ -366,6 +366,8 @@
     border: none;
     background: transparent;
     cursor: pointer;
+
+    transition: all .2s linear;
 }
 
 .nav__wishlisht svg {
