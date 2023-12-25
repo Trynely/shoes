@@ -357,6 +357,28 @@
     justify-content: flex-end;
 }
 
+@keyframes showWishlistButton {
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.2);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+
+    80% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 .nav__wishlisht button {
     display: flex;
     position: relative;
@@ -367,7 +389,8 @@
     background: transparent;
     cursor: pointer;
 
-    transition: all .2s linear;
+    transition: all .1s linear;
+    animation: showWishlistButton .6s linear;
 }
 
 .nav__wishlisht svg {
@@ -394,6 +417,7 @@
     align-items: center;
     justify-content: center;
     font-family: 'Rubik', sans-serif;
+    z-index: 3;
 }
 
 @media (max-width: 1306px) {

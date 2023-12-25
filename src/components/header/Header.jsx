@@ -11,24 +11,6 @@ const Header = () => {
     useEffect(() => {
         console.log(wishlistActive)
     }, [wishlistActive])
-
-    const wishlist = () => {
-        if(wishlistActive === false) {
-            setWishlistActive(true)
-            
-            // setStyle(null)
-        }
-
-        if(wishlistActive === true) {
-            setWishlistActive(false)
-
-            // setStyle({animation: "hideUserWindow .3s linear forwards"})
-            
-            // setTimeout(() => {
-            //     setStyle({display: "none"})
-            // }, 400)
-        }
-    }
     
     return (
         <div className='header'>
@@ -65,7 +47,7 @@ const Header = () => {
                     <div style={user ? null : {transform: "none", padding: "0", background: "transparent"}} className="nav__user_container">
                         <div style={user ? null : {transform: "none", padding: "0", background: "transparent"}} className="user_container__is_authenticated">
                             {
-                                user 
+                                user
                                     ?
                                 <div className="is_authenticated__user_options">
                                     {
@@ -139,7 +121,7 @@ const Header = () => {
                         user && thingsOfWishlist.length > 0
                             ?
                         <div className="nav__wishlisht">
-                            <button onClick={wishlist}>
+                            <button onClick={() => setWishlistActive(true)}>
                                 <span>{thingsOfWishlist.length}</span>
                                 
                                 <svg style={wishlistActive ? {color: "#bd2525", fill: "#bd2525"} : null} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">

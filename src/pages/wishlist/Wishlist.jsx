@@ -12,6 +12,7 @@ const Wishlist = () => {
     
     const [loading, setLoading] = useState()
     const [notFound, setNotFound] = useState(true)
+    const [style, setStyle] = useState({display: "none"})
 
     useEffect(() => {
         document.title = "Избранное"
@@ -26,6 +27,21 @@ const Wishlist = () => {
             setNotFound(false)
         }, 500)
     }, [])
+
+    const hideWishlist = () => {
+        if(wishlistActive === false) {
+            setStyle(null)
+        }
+
+        if(wishlistActive === true) {
+            setWishlistActive(false)
+            setStyle({animation: "hideWishlist .4s ease-in-out forwards"})
+
+            setTimeout(() => {
+                setStyle({display: "none"})
+            }, 400)
+        }
+    }
 
     const wishlistThingsDelete = (id) => {
         setLoading(true)
@@ -66,11 +82,21 @@ const Wishlist = () => {
     } 
 
     return ( 
-        <div style={wishlistActive ? {display: "block"} : {display: "none"}} className="wishlist">
-            <div style={wishlistActive ? {display: "flex"} : {display: "none"}} className="wishlist__container">
-                <button onClick={() => setWishlistActive(false)}>
-                    X
-                </button>
+        <div style={wishlistActive ? {display: "block"} : style} className="wishlist">
+            <div style={wishlistActive ? {display: "flex"} : style} className="wishlist__container">
+                <div className="container__wishlist_close">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                        </svg>
+                        
+                        ИЗБРАННОЕ
+                    </span>
+
+                    <button onClick={hideWishlist}>
+                        X
+                    </button>
+                </div>
 
                 <div className="container__wishlist_things">
                     {
@@ -97,8 +123,10 @@ const Wishlist = () => {
                         ))
                     }
                 </div>
-
-                <button style={thingsOfWishlist.length <= 0 ? {display: "none"} : null} onClick={wishlistClear}>Очистить</button>
+                
+                <div className="container__clear_wishlist">
+                    <button style={thingsOfWishlist.length <= 0 ? {display: "none"} : null} onClick={wishlistClear}>Очистить</button>
+                </div>
             </div>
         </div>
     )
