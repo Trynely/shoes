@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios"
+import axios from "axios"
 import {Link} from "react-router-dom"
 import {useState} from "react"
 import Header from "../../components/header/Header"
