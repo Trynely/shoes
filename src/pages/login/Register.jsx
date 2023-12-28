@@ -1,27 +1,37 @@
-import {useEffect, useState} from "react"
+import axios, { AxiosError } from "axios"
+import {Link} from "react-router-dom"
+import {useState} from "react"
 import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
-import {Link} from "react-router-dom"
 
 const Register = () => {
-    const registerUser = async (event) => {
-        try {
-            event.preventDefault()
-
-            const response = await fetch('http://127.0.0.1:8000/api/register/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({email: event.target.email.value, username: event.target.username.value, password: event.target.password.value})
-            })
-
-            if(response.ok === true) {
-                alert("Создано!")
+    const [validation, setValidation] = useState("")
+    
+    const userRegister = (event) => {
+        event.preventDefault()
+        
+        axios({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/user/register/',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                email: event.target.email.value,
+                username: event.target.username.value,
+                password: event.target.password.value
             }
-        } catch(error) {
-            console.log("Ошибка >>", error)
-        }
+        }).then((response) => {
+            if(response.status === 201) {
+                setValidation("Аккаунт успешно создан")
+            }
+
+            setTimeout(() => {
+                setValidation(null)
+            }, 5000)
+        }).catch((error) => {
+            setValidation("Произошла ошибка")
+        })
     }
 
     return (
@@ -40,7 +50,7 @@ const Register = () => {
                         </span>
                     </div>
 
-                    <form className="container__login_form" onSubmit={registerUser}>
+                    <form className="container__login_form" onSubmit={userRegister}>
                         <div className="login_form__email_block">
                             <input className="login_form__email" id="email" type="email" name="email" autoComplete="off" placeholder=" " />
                             
@@ -70,6 +80,8 @@ const Register = () => {
                             </svg>
 
                             <label className="placeholder" htmlFor="email">ПАРОЛЬ</label>
+
+                            <span style={validation === "Аккаунт успешно создан" ? {color: "rgb(0, 82, 0)"} : {color: "rgb(87, 0, 0)"}} className="login_form__password_block__validation">{validation}</span>
                         </div>
 
                         <div className="login_form__login_block">

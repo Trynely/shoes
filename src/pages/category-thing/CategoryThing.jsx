@@ -3,7 +3,7 @@ import {Link, useParams} from "react-router-dom"
 import {useContext, useEffect, useRef, useState} from "react"
 import {Toaster, toast} from 'sonner'
 import {AuthenticationContext} from "../../components/authentication/Authentication"
-import {CartWishlistContext} from "../../components/items-length/CartWishlistLen"
+import {CartWishlistContext} from "../../components/cart-wishlist/CartWishlist"
 import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import Toast from "../../components/toast/Toast"

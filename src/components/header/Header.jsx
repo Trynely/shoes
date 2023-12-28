@@ -1,16 +1,12 @@
 import {Link, NavLink} from "react-router-dom"
-import {useContext, useEffect, useState} from 'react'
+import {useContext} from 'react'
 import {AuthenticationContext} from "../authentication/Authentication"
-import {CartWishlistContext} from "../items-length/CartWishlistLen"
+import {CartWishlistContext} from "../cart-wishlist/CartWishlist"
 import "./header.css"
 
 const Header = () => {
     const {user, avatar, logoutUser} = useContext(AuthenticationContext)
     const {thingsOfWishlist, wishlistActive, setWishlistActive} = useContext(CartWishlistContext)
-
-    useEffect(() => {
-        console.log(wishlistActive)
-    }, [wishlistActive])
     
     return (
         <div className='header'>

@@ -37,7 +37,7 @@ const Authentication = ({children}) => {
     const updateToken = () => {
         axios({
             method: "post",
-            url: "http://127.0.0.1:8000/api/token/refresh/",
+            url: "http://127.0.0.1:8000/user/token/refresh/",
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -81,7 +81,7 @@ const Authentication = ({children}) => {
 
         axios({
             method: "get",
-            url: `http://127.0.0.1:8000/api/avatar/${user_id}/`,
+            url: `http://127.0.0.1:8000/user/avatar/${user_id}/`,
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + String(tokens.access)
