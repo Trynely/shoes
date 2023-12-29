@@ -7,8 +7,8 @@ import {CartWishlistContext} from "../../components/cart-wishlist/CartWishlist"
 import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import Toast from "../../components/toast/Toast"
-import "./category-things.css"
 import Wishlist from "../wishlist/Wishlist"
+import "./category-things.css"
 // import {useToaster, Toaster, toast} from "react-hot-toast"
 
 export const CategoryThing = () => {
@@ -24,16 +24,16 @@ export const CategoryThing = () => {
     const label42 = useRef("")
     const label43 = useRef("")
     const label44 = useRef("")
+    const label45 = useRef("")
 
     const [things, setThings] = useState([])
     const [checkCart, setCheckCart] = useState([])
     const [checkWishlist, setCheckWishlist] = useState([])
-    const [wishlistActiv, setWishlistActive] = useState()
-    const [checkSize, setCheckSize] = useState([])
-    const [labelActive, setLabelActive] = useState(null)
+    const [labelActive, setLabelActive] = useState("")
+    const [selectedThing, setSelectedThing] = useState({})
 
     useEffect(() => {
-        thingsCat()
+        categoryThings()
 
         document.title = category.charAt(0).toUpperCase() + category.slice(1)
     }, [])
@@ -52,7 +52,11 @@ export const CategoryThing = () => {
         setCheckWishlist(wishlistObjects)
     }, [thingsOfCart, thingsOfWishlist])
 
-    const thingsCat = () => {
+    const sizeSelect = () => {
+        
+    }
+
+    const categoryThings = () => {
         axios({
             method: "get",
             url: `http://127.0.0.1:8000/category/${category}/`
@@ -91,21 +95,14 @@ export const CategoryThing = () => {
         }).then((response) => {
             if(response.status === 200) {
                 wishlistThings()
-                setWishlistActive('favorites_heart__active')
             }
         })
     }
 
     useEffect(() => {
-        const thingsObjects = things.map(el => el.size)
-        // const thingsObjects = things.map((el) => ({[el.title]: String(el.size).split(' ')}))
-        // // const thingsKeys = thingsObjects.map(el => Object.values()))
-        // const thingValues = thingsObjects.map(el => Object.values(el)[0])
-        // // // console.log(thingsObjects, ">> things")
-        // console.log(thingsObjects.map(el => Object.values(el)[0]), ">> values")
-
-        setCheckSize(String(thingsObjects).split(' '))
-    }, [things])
+        // console.log(labelActive, ">> label active")
+        console.log(selectedThing)
+    }, [selectedThing])
 
     return (
         <>
@@ -145,46 +142,52 @@ export const CategoryThing = () => {
                                             <form>
                                                 <span>Размеры:</span>
                                                 
-                                                <label onClick={() => setLabelActive(label38.current.getAttribute("value"))} style={checkSize.includes("38") ? {display: "flex"} : {display: "none"}} ref={label38} value="38" className={labelActive === "38" ? "sizes__label_active" : "sizes__label"}>
+                                                <label onClick={() => setLabelActive([thing.title, label38.current.getAttribute("value")].join(''))} style={thing.size.split(' ').includes("38") ? {display: "flex"} : {display: "none"}} ref={label38} value="38" className={labelActive === thing.title + 38 ? "sizes__label_active" : "sizes__label"}>
                                                     <input className="radio" name="radio" type="radio" value="38" />
 
                                                     38
                                                 </label>
 
-                                                <label onClick={() => setLabelActive(label39.current.getAttribute("value"))} style={checkSize.includes("39") ? {display: "flex"} : {display: "none"}} ref={label39} value="39" className={labelActive === "39" ? "sizes__label_active" : "sizes__label"}>
+                                                <label onClick={() => setLabelActive([thing.title, label39.current.getAttribute("value")].join(''))} style={thing.size.split(' ').includes("39") ? {display: "flex"} : {display: "none"}} ref={label39} value="39" className={labelActive === thing.title + 39 ? "sizes__label_active" : "sizes__label"}>
                                                     <input className="radio" name="radio" type="radio" value="39" />
                                                     
                                                     39
                                                 </label>
 
-                                                <label onClick={() => setLabelActive(label40.current.getAttribute("value"))} style={checkSize.includes("40") ? {display: "flex"} : {display: "none"}} ref={label40} value="40" className={labelActive === "40" ? "sizes__label_active" : "sizes__label"}>
+                                                <label onClick={() => setLabelActive([thing.title, label40.current.getAttribute("value")].join(''))} style={thing.size.split(' ').includes("40") ? {display: "flex"} : {display: "none"}} ref={label40} value="40" className={labelActive === thing.title + 40 ? "sizes__label_active" : "sizes__label"}>
                                                     <input className="radio" name="radio" type="radio" value="40" />
 
                                                     40
                                                 </label>
                 
-                                                <label onClick={() => setLabelActive(label41.current.getAttribute("value"))} style={checkSize.includes("41") ? {display: "flex"} : {display: "none"}} ref={label41} value="41" className={labelActive === "41" ? "sizes__label_active" : "sizes__label"}>
+                                                <label onClick={() => setLabelActive([thing.title, label41.current.getAttribute("value")].join(''))} style={thing.size.split(' ').includes("41") ? {display: "flex"} : {display: "none"}} ref={label41} value="41" className={labelActive === thing.title + 41 ? "sizes__label_active" : "sizes__label"}>
                                                     <input className="radio" name="radio" type="radio" value="41" />
 
                                                     41
                                                 </label>
 
-                                                <label onClick={() => setLabelActive(label42.current.getAttribute("value"))} style={checkSize.includes("42") ? {display: "flex"} : {display: "none"}} ref={label42} value="42" className={labelActive === "42" ? "sizes__label_active" : "sizes__label"}>
+                                                <label onClick={() => setLabelActive([thing.title, label42.current.getAttribute("value")].join(''))} style={thing.size.split(' ').includes("42") ? {display: "flex"} : {display: "none"}} ref={label42} value="42" className={labelActive === thing.title + 42 ? "sizes__label_active" : "sizes__label"}>
                                                     <input className="radio" name="radio" type="radio" value="42" />
 
                                                     42
                                                 </label>
 
-                                                <label onClick={() => setLabelActive(label43.current.getAttribute("value"))} style={checkSize.includes("43") ? {display: "flex"} : {display: "none"}} ref={label43} value="43" className={labelActive === "43" ? "sizes__label_active" : "sizes__label"}>
+                                                <label onClick={() => setLabelActive([thing.title, label43.current.getAttribute("value")].join(''))} style={thing.size.split(' ').includes("43") ? {display: "flex"} : {display: "none"}} ref={label43} value="43" className={labelActive === thing.title + 43 ? "sizes__label_active" : "sizes__label"}>
                                                     <input className="radio" name="radio" type="radio" value="43" />
 
                                                     43
                                                 </label>
 
-                                                <label onClick={() => setLabelActive(label44.current.getAttribute("value"))} style={checkSize.includes("44") ? {display: "flex"} : {display: "none"}} ref={label44} value="44" className={labelActive === "44" ? "sizes__label_active" : "sizes__label"}>
+                                                <label onClick={() => setLabelActive([thing.title, label44.current.getAttribute("value")].join(''))} style={thing.size.split(' ').includes("44") ? {display: "flex"} : {display: "none"}} ref={label44} value="44" className={labelActive === thing.title + 44 ? "sizes__label_active" : "sizes__label"}>
                                                     <input className="radio" name="radio" type="radio" value="44" />
 
                                                     44
+                                                </label>
+
+                                                <label onClick={() => setLabelActive([thing.title, label45.current.getAttribute("value")].join(''))} style={thing.size.split(' ').includes("45") ? {display: "flex"} : {display: "none"}} ref={label45} value="45" className={labelActive === thing.title + 45 ? "sizes__label_active" : "sizes__label"}>
+                                                    <input className="radio" name="radio" type="radio" value="45" />
+
+                                                    45
                                                 </label>
                                             </form>
                                         </div>
@@ -193,7 +196,7 @@ export const CategoryThing = () => {
                                     <div className="thing__price">
                                         <span className="price__price">{thing.price} р.</span>
                                         
-                                        <button className="price__buy_btn">КУПИТЬ</button>
+                                        <button className="price__buy_btn" style={labelActive.slice(0, -2).includes(thing.title) ? null : {opacity: ".6"}} onClick={() => setSelectedThing({"title": labelActive.slice(0, -2), "select_size": labelActive.slice(-2)})} disabled={labelActive.slice(0, -2).includes(thing.title) ? false : true}>КУПИТЬ</button>
                                     </div>
 
                                     <div className="thing__add_to">
