@@ -116,13 +116,13 @@ const Settings = () => {
                 new_password: event.target.new_password.value,
             }
         }).then((response) => {
-            if(response.status === 204) {
+            if(response.status === 200) {
                 setValidation("Пароль успешно изменён")
-            } else {
+            }
+        }).catch((error) => {
+            if(error) {
                 setValidation("Не удалось изменить пароль")
             }
-
-            console.log(response)
         })
 
         setTimeout(() => {

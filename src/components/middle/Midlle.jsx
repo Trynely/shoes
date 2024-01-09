@@ -1,10 +1,13 @@
 import axios from "axios"
-import {useState, useEffect} from 'react'
+import {AuthenticationContext} from "../authentication/Authentication"
+import {useState, useEffect, useContext} from 'react'
 import {Link} from "react-router-dom"
 import React from "react"
 import "./middle.css"
 
 function Middle() {
+    const {logoutUser} = useContext(AuthenticationContext)
+
     const [activeIndex, setActiveIndex] = useState(0)
     const [welcome, setWelcome] = useState(false)
     const [categories, setCategories] = useState()
@@ -30,6 +33,10 @@ function Middle() {
 
             if(response.status === 200) {
                 setCategories(data)
+            }
+        }).catch((error) => {
+            if(error) {
+                logoutUser()
             }
         })
     }

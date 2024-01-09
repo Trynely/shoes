@@ -7,26 +7,26 @@ import {useNavigate} from "react-router-dom"
 export const AuthenticationContext = createContext()
 
 const Authentication = ({children}) => {
-    let [user, setUser] = useState(() => (localStorage.getItem("JWT") ? jwtDecode(localStorage.getItem("JWT")) : null))
-    let [tokens, setTokens] = useState(() => (localStorage.getItem("JWT") ? JSON.parse(localStorage.getItem("JWT")) : null))
-    let [active, setActive] = useState(true)
+    const [tokens, setTokens] = useState(() => (localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null))
+    const [user, setUser] = useState(() => (localStorage.getItem("token") ? jwtDecode(localStorage.getItem("token")) : null))
+    const [windowReload, setWindowReload] = useState(true)
     const [avatar, setAvatar] = useState([])
 
     const navigate = useNavigate()
 
     useEffect(() => {
         if(tokens) {
-            if(active) {
-                updateToken()
+            if(windowReload) {
+                updateAcessToken()
             }
     
             let interval = setInterval(() => {
-                updateToken()
-            }, 540000) // 9 min
+                updateAcessToken()
+            }, 240000) // 4 min
 
             return () => clearInterval(interval)
         }
-    }, [tokens])
+    }, [tokens, user])
 
     useEffect(() => {
         if(user) {
@@ -34,7 +34,7 @@ const Authentication = ({children}) => {
         }
     }, [user])
 
-    const updateToken = () => {
+    const updateAcessToken = () => {
         axios({
             method: "post",
             url: "http://127.0.0.1:8000/user/token/refresh/",
@@ -50,24 +50,30 @@ const Authentication = ({children}) => {
             if(response.status === 200) {
                 setTokens(data)
                 setUser(jwtDecode(data.access))
-                localStorage.setItem('JWT', JSON.stringify(data))
-            } else if(response.status === 401) {
-                localStorage.removeItem('JWT')
-                setTokens(null)
-                setUser(null)
-                window.location.reload()
+
+                localStorage.setItem('token', JSON.stringify(data))
             }
 
             console.log("update >>", data)
+            console.log("user >> ", user)
+            console.log("tokens >> ", tokens)
+        }).catch((error) => {
+            if(error) {
+                logoutUser()
+            }
+        }).catch((error) => {
+            if(error) {
+                logoutUser()
+            }
         })
 
-        if(active) {
-            setActive(false)
+        if(windowReload) {
+            setWindowReload(false)
         }
     }
 
     const logoutUser = () => {
-        localStorage.removeItem('JWT')
+        localStorage.removeItem('token')
         localStorage.removeItem('Img')
         
         setTokens(null)
@@ -102,12 +108,12 @@ const Authentication = ({children}) => {
     let items = {
         setTokens: setTokens,
         setUser: setUser,
-        setActive: setActive,
+        setWindowReload: setWindowReload,
         logoutUser: logoutUser,
         userAvatar: userAvatar,
         setAvatar: setAvatar,
         user: user,
-        active: active,
+        windowReload: windowReload,
         tokens: tokens,
         avatar: avatar,
     }

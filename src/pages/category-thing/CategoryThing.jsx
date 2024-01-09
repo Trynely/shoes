@@ -1,7 +1,7 @@
 import axios from "axios"
 import {Link, useParams} from "react-router-dom"
 import {useContext, useEffect, useRef, useState} from "react"
-import {Toaster, toast} from 'sonner'
+import {toast} from 'sonner'
 import {AuthenticationContext} from "../../components/authentication/Authentication"
 import {CartWishlistContext} from "../../components/cart-wishlist/CartWishlist"
 import Header from "../../components/header/Header"
@@ -9,10 +9,9 @@ import Footer from "../../components/footer/Footer"
 import Toast from "../../components/toast/Toast"
 import Wishlist from "../wishlist/Wishlist"
 import "./category-things.css"
-// import {useToaster, Toaster, toast} from "react-hot-toast"
 
 export const CategoryThing = () => {
-    const {tokens, user} = useContext(AuthenticationContext)
+    const {tokens, user, logoutUser} = useContext(AuthenticationContext)
     const {thingsOfCart, thingsOfWishlist, cartThings, wishlistThings} = useContext(CartWishlistContext)
 
     const {category} = useParams()
@@ -52,10 +51,6 @@ export const CategoryThing = () => {
         setCheckWishlist(wishlistObjects)
     }, [thingsOfCart, thingsOfWishlist])
 
-    const sizeSelect = () => {
-        
-    }
-
     const categoryThings = () => {
         axios({
             method: "get",
@@ -65,6 +60,10 @@ export const CategoryThing = () => {
 
             if(response.status === 200) {
                 setThings(data)
+            }
+        }).catch((error) => {
+            if(error) {
+                logoutUser()
             }
         })
     }
@@ -98,11 +97,6 @@ export const CategoryThing = () => {
             }
         })
     }
-
-    useEffect(() => {
-        // console.log(labelActive, ">> label active")
-        console.log(selectedThing)
-    }, [selectedThing])
 
     return (
         <>
@@ -196,7 +190,7 @@ export const CategoryThing = () => {
                                     <div className="thing__price">
                                         <span className="price__price">{thing.price} р.</span>
                                         
-                                        <button className="price__buy_btn" style={labelActive.slice(0, -2).includes(thing.title) ? null : {opacity: ".6"}} onClick={() => setSelectedThing({"title": labelActive.slice(0, -2), "select_size": labelActive.slice(-2)})} disabled={labelActive.slice(0, -2).includes(thing.title) ? false : true}>КУПИТЬ</button>
+                                        <button className="price__buy_btn" style={labelActive.slice(0, -2).includes(thing.title) ? null : {opacity: ".6"}} onClick={() => setSelectedThing({"title": labelActive.slice(0, -2), "selected_size": labelActive.slice(-2)})} disabled={labelActive.slice(0, -2).includes(thing.title) ? false : true}>КУПИТЬ</button>
                                     </div>
 
                                     <div className="thing__add_to">

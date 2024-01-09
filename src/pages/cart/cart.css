@@ -16,19 +16,23 @@
     display: flex;
     justify-content: space-between;
     background-color: rgb(93, 116, 117);
+    padding-left: 10px;
 }
 
 .cart_thing__img_title {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10px 10px 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px 10px 10px;
+    row-gap: 10px;
 }
 
 .cart_thing__img_title img {
     width: 150px;
     height: 150px;
+    border-radius: 5px;
+    opacity: .8;
 }
 
 .cart_thing__img_title a {

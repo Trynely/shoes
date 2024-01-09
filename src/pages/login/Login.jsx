@@ -1,5 +1,5 @@
+import axios from "axios"
 import {useState, useEffect} from "react"
-import {jwtDecode} from "jwt-decode"
 import {Link, useNavigate} from "react-router-dom"
 import {BeatLoader} from "react-spinners"
 import Header from "./../../components/header/Header"
@@ -7,9 +7,7 @@ import Footer from "./../../components/footer/Footer"
 import "./login.css"
 
 const Login = () => {
-    let [user, setUser] = useState(() => (localStorage.getItem("JWT") ? jwtDecode(localStorage.getItem("JWT")) : null))
-    let [tokens, setTokens] = useState(() => (localStorage.getItem("JWT") ? JSON.parse(localStorage.getItem("JWT")) : null))
-    const [loading, setLoading] = useState()
+    const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate()
 
@@ -17,39 +15,35 @@ const Login = () => {
         document.title = "Войти"
     }, [])
 
-    let loginUser = async (e) => {
+    const loginUser = (event) => {
+        event.preventDefault()
+        
         setLoading(true)
-
-        try {
-            e.preventDefault()
-
-            const response = await fetch('http://127.0.0.1:8000/user/token/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({email: e.target.email.value, password: e.target.password.value})
-            })
-
-            let data = await response.json()
+        
+        axios({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/user/token/',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {email: event.target.email.value, password: event.target.password.value}
+        }).then((response) => {
+            const data = response.data
 
             if(response.status === 200) {
-                setTokens(data)
-                setUser(jwtDecode(data.access))
-
-                localStorage.setItem("JWT", JSON.stringify(data))
-
+                localStorage.setItem("token", JSON.stringify(data))
+                
+                setLoading(false)
                 navigate("/")
 
                 window.location.reload()
-            } else {
-                alert('Неправильный пароль!')
             }
-
-            setLoading(false)
-        } catch(err) {
-            console.log(err)
-        }
+        }).catch((error) => {
+            if(error.response) {
+                setLoading(false)
+                alert('Произошла ошибка')
+            }
+        })
     }
 
     return (
@@ -108,8 +102,6 @@ const Login = () => {
                         
                         <div className="login_form__btn_block">
                             <button method="submit">
-                                Войти
-
                                 {
                                     loading 
                                         ?
@@ -118,7 +110,7 @@ const Login = () => {
                                         size={5}
                                     />
                                         :
-                                    null
+                                    <>Войти</>
                                 }
                             </button>
                         </div>                    
