@@ -61,10 +61,6 @@ const Authentication = ({children}) => {
             if(error) {
                 logoutUser()
             }
-        }).catch((error) => {
-            if(error) {
-                logoutUser()
-            }
         })
 
         if(windowReload) {
