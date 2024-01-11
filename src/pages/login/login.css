@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
 .login {
-    margin-top: 175px;
+    margin-top: 150px;
 }
 
 .login__container {
@@ -30,13 +30,13 @@
 }
 
 .container__login_label span svg {
-    width: 33px;
-    height: 33px;
+    width: 30px;
+    height: 30px;
 }
 
 .container__login_label span {
     font-family: 'Rubik', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,7 +61,7 @@
     height: 33px;
     border: 2px solid #000000;
     padding: 10px;
-    color: #000000;
+    color: rgb(0, 44, 44);
     border-radius: 5px;
     font-size: 90%;
     font-family: 'Poppins', sans-serif;
@@ -74,19 +74,15 @@
 }
 
 .login_form__email:focus {
-    border-color: rgb(61, 90, 90);
+    border-color: rgb(0, 44, 44);
 }
 
 .login_form__email:focus ~ .form_email_img {
-    color: rgb(61, 90, 90);
+    color: rgb(0, 44, 44);
 }
 
 .login_form__email:focus ~ .form_password_img {
-    color: rgb(61, 90, 90);
-}
-
-.login_form__email:focus ~ .login_form__email::-webkit-input-placeholder {
-    color: rgb(61, 90, 90);
+    color: rgb(0, 44, 44);
 }
 
 .login_form__email::-webkit-input-placeholder {
@@ -118,17 +114,92 @@
 .password_block__forgot_password {
     display: flex;
     position: absolute;
-    bottom: -18px;
-    right: 30px;
+    bottom: -17px;
+    right: 50px;
     color: rgb(0, 0, 0);
-    font-size: 13px;
-    text-decoration: none;
+    font-size: 12px;
     font-family: 'Rubik', sans-serif;
     font-weight: 600;
+    text-transform: uppercase;
 
     transition: color .2s linear;
 }
 
 .password_block__forgot_password:hover {
     color: rgb(0, 68, 68);
+}
+
+.login_form__register_block {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(117, 145, 146);
+    width: 170px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-top: 50px;
+    row-gap: 4px;
+}
+
+.login_form__register_block span {
+    font-size: 12px;
+    color: rgb(65, 8, 8);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.login_form__register_block a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    column-gap: 3px;
+    color: #000000;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: color .2s linear;
+}
+
+.login_form__register_block a:hover {
+    color: rgb(0, 68, 68);
+}
+
+.login_form__register_block svg {
+    width: 17px;
+    height: 17px;
+}
+
+.login_form__btn_block {
+    display: flex;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.login_form__btn_block button {
+    width: 120px;
+    height: 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(50, 71, 71);
+    color: rgba(238, 238, 238, 0.795);
+    font-size: 13px;
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    column-gap: 8px;
+
+    transition: all .2s linear;
+}
+
+.login_form__btn_block button:hover {
+    color: rgb(238, 238, 238);
+    background-color: rgb(44, 53, 53);
+    box-shadow: 0 0 6px rgb(44, 53, 53);
 }
