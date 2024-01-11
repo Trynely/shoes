@@ -3,98 +3,123 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
 .login {
-    margin-top: 200px;
+    margin-top: 175px;
 }
 
 .login__container {
-    width: 350px;
-    height: 400px;
-    margin: 0 auto;
-    background-color: rgb(104, 132, 133);
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgb(104, 132, 133);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    row-gap: 100px;
+    width: 400px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: rgb(104, 132, 133);
+    box-shadow: 0 0 3px rgb(62, 78, 78);
+    border-radius: 10px;
+    font-family: 'Rubik', sans-serif;
 }
 
 .container__login_label {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgb(117, 145, 146);
+    padding: 10px 0;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
-.container__login_label svg {
-    width: 27px;
-    height: 27px;
+.container__login_label span svg {
+    width: 33px;
+    height: 33px;
 }
 
 .container__login_label span {
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 17px;
-    font-family: 'Rubik', sans-serif;
     column-gap: 3px;
-    font-weight: 500;
-    margin-right: 18px;
 }
 
 .container__login_form {
     display: flex;
     flex-direction: column;
-    margin-top: 60px;
-    row-gap: 30px;
+    row-gap: 20px;
 }
 
 .login_form__email_block {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    column-gap: 5px;
 }
 
-.login_form__username_block {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    column-gap: 5px;
+.login_form__email {
+    width: 300px;
+    height: 33px;
+    border: 2px solid #000000;
+    padding: 10px;
+    color: #000000;
+    border-radius: 5px;
+    font-size: 90%;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    font-weight: 600;
+    background-color: rgb(117, 145, 146);
+    margin-left: 35px;
+
+    transition: all .1s linear;
 }
 
-.login_form__username_block svg {
+.login_form__email:focus {
+    border-color: rgb(61, 90, 90);
+}
+
+.login_form__email:focus ~ .form_email_img {
+    color: rgb(61, 90, 90);
+}
+
+.login_form__email:focus ~ .form_password_img {
+    color: rgb(61, 90, 90);
+}
+
+.login_form__email:focus ~ .login_form__email::-webkit-input-placeholder {
+    color: rgb(61, 90, 90);
+}
+
+.login_form__email::-webkit-input-placeholder {
+    color: #000000;
+    font-family: 'Rubik', sans-serif;
+}
+
+.form_input_img {
     position: absolute;
-    left: 38px;
-    bottom: -3px;
-    width: 30px;
-    height: 30px;
+    left: 28px;
+    width: 35px;
+    height: 35px;
+
+    transition: all .1s linear;
 }
 
 .login_form__password_block {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    column-gap: 5px;
 }
 
-.login_form__password_block__validation {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -20px;
-    font-size: 12px;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
+.form_input_img {
+    width: 35px;
+    height: 35px;
 }
 
 .password_block__forgot_password {
     display: flex;
     position: absolute;
     bottom: -18px;
-    right: 80px;
+    right: 30px;
     color: rgb(0, 0, 0);
     font-size: 13px;
     text-decoration: none;
@@ -107,212 +132,3 @@
 .password_block__forgot_password:hover {
     color: rgb(0, 68, 68);
 }
-
-.login_form__email {
-    width: 200px;
-    background: none;
-    border: none;
-    border-bottom: 2px solid rgb(0, 0, 0);
-    outline: none;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    transition: border-color .2s linear;
-}
-
-.placeholder {
-    position: absolute;
-    left: 78px;
-    transition: all .1s ease;
-    bottom: 10px;
-    font-size: 12px;
-    font-family: 'Rubik', sans-serif;
-    font-weight: 600;
-}
-
-.login_form__email_block svg {
-    position: absolute;
-    left: 38px;
-    bottom: -3px;
-    width: 30px;
-    height: 30px;
-}
-
-.login_form__password_block svg {
-    position: absolute;
-    left: 38px;
-    bottom: -3px;
-    width: 30px;
-    height: 30px;
-}
-
-.container__login_form div input:focus ~ .placeholder,
-.container__login_form div input:not(:placeholder-shown) ~ .placeholder {
-    bottom: 22px;
-    color: rgb(0, 68, 68);
-}
-
-.container__login_form div input:focus ~ svg,
-.container__login_form div input:not(:placeholder-shown) ~ svg {
-    color: rgb(0, 68, 68);
-}
-
-.container__login_form div input:focus {
-    border-color: rgb(0, 68, 68);
-}
-
-.login_form__register_block {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(129, 154, 155);
-    padding: 5px;
-    row-gap: 1px;
-    width: 160px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    margin-top: 10px;
-}
-
-.login_form__register_block span {
-    font-size: 14px;
-    font-family: 'Rubik', sans-serif;
-}
-
-.login_form__register_block a svg {
-    width: 22px;
-    height: 22px;
-}
-
-.login_form__register_block a {
-    font-size: 15px;
-    column-gap: 3px;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: rgb(36, 62, 63);
-    width: 90px;
-    font-family: 'Rubik', sans-serif;
-
-    transition: color .2s linear;
-}
-
-.login_form__register_block a:hover {
-    color: rgb(0, 0, 0);
-}
-
-.login_form__login_block {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(129, 154, 155);
-    padding: 5px;
-    row-gap: 1px;
-    width: 160px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.login_form__login_block span {
-    font-size: 14px;
-    font-family: 'Rubik', sans-serif;
-}
-
-.login_form__login_block a svg {
-    width: 22px;
-    height: 22px;
-}
-
-.login_form__login_block a {
-    font-size: 15px;
-    column-gap: 3px;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: rgb(36, 62, 63);
-    width: 90px;
-    font-family: 'Rubik', sans-serif;
-
-    transition: color .2s linear;
-}
-
-.login_form__login_block a:hover {
-    color: rgb(0, 0, 0);
-}
-
-.login_form__btn_block {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.login_form__btn_block button {
-    width: 120px;
-    height: 28px;
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: rgb(50, 71, 71);
-    color: rgba(238, 238, 238, 0.795);
-    font-size: 13px;
-    font-family: 'Rubik', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    text-transform: uppercase;
-    column-gap: 8px;
-
-    transition: all .2s linear;
-}
-
-.login_form__btn_block button:hover {
-    color: rgb(238, 238, 238);
-    background-color: rgb(44, 53, 53);
-    box-shadow: 0 0 6px rgb(44, 53, 53);
-}
-
-.register_form__btn_block {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.register_form__btn_block button {
-    width: 120px;
-    height: 28px;
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: rgb(50, 71, 71);
-    color: rgba(238, 238, 238, 0.795);
-    font-size: 13px;
-    font-family: 'Rubik', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    text-transform: uppercase;
-
-    transition: all .2s linear;
-}
-
-.register_form__btn_block button:hover {
-    color: rgb(238, 238, 238);
-    background-color: rgb(44, 53, 53);
-    box-shadow: 0 0 6px rgb(44, 53, 53);
-}
-
-.container__register_label svg {
-    width: 27px;
-    height: 27px;
-}
-
-.container__register_label span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 17px;
-    font-family: 'Rubik', sans-serif;
-    column-gap: 3px;
-    font-weight: 500;
-    margin-right: 10px;
-    margin-top: 8px;
-}
-
