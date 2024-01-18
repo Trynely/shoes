@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
-.login {
+.register {
     margin-top: 150px;
 }
 
-.login__container {
+.register__container {
     display: flex;
     flex-direction: column;
     row-gap: 100px;
@@ -19,7 +19,7 @@
     font-family: 'Rubik', sans-serif;
 }
 
-.container__login_label {
+.container__register_label {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,12 +29,12 @@
     border-top-left-radius: 10px;
 }
 
-.container__login_label span svg {
+.container__register_label span svg {
     width: 30px;
     height: 30px;
 }
 
-.container__login_label span {
+.container__register_label span {
     font-family: 'Rubik', sans-serif;
     font-size: 18px;
     display: flex;
@@ -43,20 +43,27 @@
     column-gap: 3px;
 }
 
-.container__login_form {
+.container__register_form {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
 }
 
-.login_form__email_block {
+.register_form__email_block {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.login_form__email {
+.register_form__username_block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register_form__email {
     width: 300px;
     height: 33px;
     border: 2px solid #000000;
@@ -73,19 +80,19 @@
     transition: all .1s linear;
 }
 
-.login_form__email:focus {
+.register_form__email:focus {
     border-color: rgb(0, 44, 44);
 }
 
-.login_form__email:focus ~ .form_email_img {
+.register_form__email:focus ~ .form_email_img {
     color: rgb(0, 44, 44);
 }
 
-.login_form__email:focus ~ .form_password_img {
+.register_form__email:focus ~ .form_password_img {
     color: rgb(0, 44, 44);
 }
 
-.login_form__email::-webkit-input-placeholder {
+.register_form__email::-webkit-input-placeholder {
     color: #000000;
     font-family: 'Rubik', sans-serif;
 }
@@ -99,33 +106,25 @@
     transition: all .1s linear;
 }
 
-.login_form__password_block {
+.register_form__password_block {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.password_block__forgot_password {
-    display: flex;
+.register_form__password_block__validation {
     position: absolute;
-    bottom: -17px;
-    right: 40px;
-    color: rgb(0, 0, 0);
-    font-size: 11px;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
     font-family: 'Rubik', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
-    text-decoration: none;
-
-    transition: color .2s linear;
 }
 
-.password_block__forgot_password:hover {
-    color: rgb(0, 68, 68);
-}
-
-.login_form__register_block {
+.register_form__login_block {
     display: flex;
     flex-direction: column;
     background-color: rgb(117, 145, 146);
@@ -139,14 +138,14 @@
     row-gap: 4px;
 }
 
-.login_form__register_block span {
+.register_form__login_block span {
     font-size: 12px;
     color: rgb(65, 8, 8);
     text-transform: uppercase;
     font-weight: 600;
 }
 
-.login_form__register_block a {
+.register_form__login_block a {
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -159,23 +158,23 @@
     transition: color .2s linear;
 }
 
-.login_form__register_block a:hover {
+.register_form__login_block a:hover {
     color: rgb(0, 68, 68);
 }
 
-.login_form__register_block svg {
+.register_form__login_block svg {
     width: 17px;
     height: 17px;
 }
 
-.login_form__btn_block {
+.register_form__btn_block {
     display: flex;
-    margin-top: 50px;
+    margin-top: 15px;
     align-items: center;
     justify-content: center;
 }
 
-.login_form__btn_block button {
+.register_form__btn_block button {
     width: 120px;
     height: 28px;
     border-radius: 10px;
@@ -194,7 +193,7 @@
     transition: all .2s linear;
 }
 
-.login_form__btn_block button:hover {
+.register_form__btn_block button:hover {
     color: rgb(238, 238, 238);
     background-color: rgb(44, 53, 53);
     box-shadow: 0 0 6px rgb(44, 53, 53);
