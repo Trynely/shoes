@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unknown-property */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import axios from "axios"
 import {Link, useParams} from "react-router-dom"
 import {useContext, useEffect, useRef, useState} from "react"
@@ -98,20 +101,103 @@ export const CategoryThing = () => {
         })
     }
 
+    const filterMinThings = () => {
+        axios({
+            method: "get",
+            url: `http://127.0.0.1:8000/filter-min-things/${category}/`,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then((response) => {
+            const data = response.data
+
+            if(response.status === 200) {
+                setThings(data)
+
+            }
+        })
+    }
+
+    const filterMaxThings = () => {
+        axios({
+            method: "get",
+            url: `http://127.0.0.1:8000/filter-max-things/${category}/`,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then((response) => {
+            const data = response.data
+
+            if(response.status === 200) {
+                setThings(data)
+
+            }
+        })
+    }
+
+    const test = (event) => {
+        event.preventDefault()
+
+        axios({
+            method: 'post',
+            url: `http://127.0.0.1:8000/test/${category}/`,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            data: {"title": event.target.search.value}
+        }).then((response) => {
+            const data = response.data
+
+            if(response.status === 200) {
+                setThings(data)
+            }
+        })
+    }
+
     return (
         <>
             <Header />
 
             <div className="category_things">
                 <div className="things__container">
-                    <div className="things_container__search">
-                        <input type="text" />
+                    <div className="container__things_filter">
+                        <div className="things_container__search">
+                            <form method="get" onSubmit={test}>
+                                <input name="search" type="text" autoComplete="off"/>
 
-                        <button>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                            </svg>
-                        </button>
+                                <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div className="things_filter__option_filter">
+                            <button onClick={filterMinThings} className="option_filter__min">
+                                <svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6 9 12.75l4.286-4.286a11.948 11.948 0 0 1 4.306 6.43l.776 2.898m0 0 3.182-5.511m-3.182 5.51-5.511-3.181" />
+                                </svg>
+                                
+                                ДЕШЕВЛЕ
+                            </button>
+
+                            <button onClick={filterMaxThings} className="option_filter__max">
+                                <svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+                                </svg>
+
+                                ДОРОЖЕ
+                            </button>
+
+                            <button>
+                                <svg width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                                </svg>
+ 
+                                НОВОЕ
+                            </button>
+                        </div>
                     </div>
 
                     <div className="things_container__things_box">
@@ -243,7 +329,7 @@ export const CategoryThing = () => {
 
             <Footer />
 
-            <Toast /> 
+            <Toast />
         </>
     )
 }

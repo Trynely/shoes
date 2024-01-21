@@ -14,7 +14,21 @@
     padding-bottom: 60px;
 }
 
+.container__things_filter {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 5px;
+}
+
 .things_container__search {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.things_container__search form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,9 +44,7 @@
     font-family: 'Rubik', sans-serif;
     padding: 0 10px;
     border: 2px solid var(--main-color);
-    box-shadow: 0 0 6px rgb(104, 132, 133);
     background-color: rgb(113, 139, 139);
-    font-weight: 600;
 
     transition: all .1s linear;
 }
@@ -52,10 +64,61 @@
     width: 30px;
     height: 30px;
     color: rgb(113, 139, 139);
+
+    transition: all .1s linear;
 }
 
 .things_container__search svg:hover {
     color: rgb(135, 155, 155);
+}
+
+.things_filter__option_filter {
+    position: absolute;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 3px;
+}
+
+.things_filter__option_filter button svg {
+    width: 25px;
+    height: 25px;
+}
+
+.things_filter__option_filter button {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #000;
+    width: 150px;
+    height: 30px;
+    background-color: rgb(104, 132, 133);
+    font-family: 'Rubik', sans-serif;
+    column-gap: 3px;
+
+    transition: all .2s linear;
+}
+
+.things_filter__option_filter button:hover {
+    background-color: rgb(76, 93, 94);
+    color: rgb(209, 209, 209);
+}
+
+.option_filter__min {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.option_filter__max {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .things_container__things_box {
@@ -74,7 +137,6 @@
     width: 330px;
     height: 550px;
     background-color: rgb(104, 132, 133);
-    box-shadow: 0 0 10px rgb(104, 132, 133);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -88,7 +150,7 @@
 }
 
 .category_things__thing:hover {
-    box-shadow: 0 0 15px rgb(104, 132, 133);
+    box-shadow: 0 0 5px rgb(104, 132, 133);
 }
 
 .thing__name {
@@ -148,7 +210,7 @@
     text-decoration: none;
     font-size: 19px;
     transition: color .2s linear;
-    font-weight: 700;
+    font-weight: 600;
     font-family: 'Rubik', sans-serif;
 }
 
@@ -173,14 +235,12 @@
 .description__in_having {
     font-size: 13px;
     text-transform: uppercase;
-    font-weight: 600;
     color: #000;
 }
 
 .description__made_in {
     font-size: 13px;
     text-transform: uppercase;
-    font-weight: 600;
     color: #000;
 }
 
@@ -195,7 +255,6 @@
 .description__sizes span {
     font-size: 13px;
     text-transform: uppercase;
-    font-weight: 600;
 }
 
 .description__sizes input[type="radio"] {
@@ -216,7 +275,6 @@
     text-align: center;
     font-size: 12px;
     text-transform: uppercase;
-    font-weight: 600;
     border-radius: 3px;
     position: relative;
     width: 30px;
@@ -240,7 +298,6 @@
     text-align: center;
     font-size: 12px;
     text-transform: uppercase;
-    font-weight: 600;
     border-radius: 3px;
     position: relative;
     width: 30px;
@@ -262,7 +319,6 @@
 }
 
 .price__price {
-    font-weight: 600;
     font-family: 'Rubik', sans-serif;
     color: rgb(0, 0, 0);
     font-size: 19px;

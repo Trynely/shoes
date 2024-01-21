@@ -81,15 +81,15 @@
 }
 
 .register_form__email:focus {
-    border-color: rgb(0, 44, 44);
+    border-color: rgb(21, 70, 70);
 }
 
 .register_form__email:focus ~ .form_email_img {
-    color: rgb(0, 44, 44);
+    color: rgb(21, 70, 70);
 }
 
 .register_form__email:focus ~ .form_password_img {
-    color: rgb(0, 44, 44);
+    color: rgb(21, 70, 70);
 }
 
 .register_form__email::-webkit-input-placeholder {

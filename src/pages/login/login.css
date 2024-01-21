@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
 .login {
-    margin-top: 150px;
+    margin-top: 140px;
 }
 
 .login__container {
@@ -74,15 +74,15 @@
 }
 
 .login_form__email:focus {
-    border-color: rgb(0, 44, 44);
+    border-color: rgb(21, 70, 70);
 }
 
 .login_form__email:focus ~ .form_email_img {
-    color: rgb(0, 44, 44);
+    color: rgb(21, 70, 70);
 }
 
 .login_form__email:focus ~ .form_password_img {
-    color: rgb(0, 44, 44);
+    color: rgb(21, 70, 70);
 }
 
 .login_form__email::-webkit-input-placeholder {

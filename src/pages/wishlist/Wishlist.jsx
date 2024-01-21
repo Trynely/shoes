@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios"
-import {useEffect, useState} from "react"
+import {useState} from "react"
 import {useContext} from "react"
 import {AuthenticationContext} from "../../components/authentication/Authentication"
 import {Link} from "react-router-dom"

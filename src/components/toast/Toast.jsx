@@ -5,7 +5,7 @@ import "./toast.css"
 const Toast = () => {
     return (
         <div className="toast_box">
-            <Toaster toastOptions={{style: {position: "fixed", bottom: '110px', right: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgb(104, 132, 133)', border: 'none', boxShadow: '0 0 2px rgb(104, 132, 133)', fontFamily: 'Rubik', fontSize: '15px'}}} />
+            <Toaster toastOptions={{style: {position: "fixed", bottom: '110px', right: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgb(104, 132, 133)', border: 'none', boxShadow: '0 0 2px rgb(104, 132, 133)', fontFamily: 'Rubik', fontSize: '15px', userSelect: 'none'}}} />
 
             {/* <Toaster
                 position="bottom-right"
