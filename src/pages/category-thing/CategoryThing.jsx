@@ -135,12 +135,12 @@ export const CategoryThing = () => {
         })
     }
 
-    const test = (event) => {
+    const searchThings = (event) => {
         event.preventDefault()
 
         axios({
             method: 'post',
-            url: `http://127.0.0.1:8000/test/${category}/`,
+            url: `http://127.0.0.1:8000/search-things/${category}/`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -150,6 +150,7 @@ export const CategoryThing = () => {
 
             if(response.status === 200) {
                 setThings(data)
+                console.log(response)
             }
         })
     }
@@ -162,12 +163,12 @@ export const CategoryThing = () => {
                 <div className="things__container">
                     <div className="container__things_filter">
                         <div className="things_container__search">
-                            <form method="get" onSubmit={test}>
+                            <form method="post" onSubmit={searchThings}>
                                 <input name="search" type="text" autoComplete="off"/>
 
                                 <button>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="30" viewBox="0 -960 960 960" width="30">
+                                        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
                                     </svg>
                                 </button>
                             </form>

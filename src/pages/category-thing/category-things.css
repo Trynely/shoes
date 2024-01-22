@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
 .category_things {
     margin-top: 155px;
@@ -19,7 +20,10 @@
     display: flex;
     align-items: center;
     height: 60px;
-    padding: 5px;
+    padding: 5px 0;
+    border-radius: 3px;
+
+    background-color: rgb(58, 58, 58);
 }
 
 .things_container__search {
@@ -39,18 +43,19 @@
     width: 400px;
     height: 35px;
     outline: none;
-    border-radius: 5px;
+    border-radius: 3px;
     font-size: 15px;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Poppins', sans-serif;
     padding: 0 10px;
-    border: 2px solid var(--main-color);
     background-color: rgb(113, 139, 139);
+    box-shadow: none;
+    border: 2px solid rgb(113, 139, 139);
 
     transition: all .1s linear;
 }
 
 .things_container__search input:focus {
-    border-color: rgb(156, 180, 180);
+    border: 2px solid rgb(156, 180, 180);
     box-shadow: none;
 }
 
@@ -61,8 +66,8 @@
 }
 
 .things_container__search svg {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     color: rgb(113, 139, 139);
 
     transition: all .1s linear;
@@ -74,7 +79,7 @@
 
 .things_filter__option_filter {
     position: absolute;
-    right: 5px;
+    right: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,8 +87,8 @@
 }
 
 .things_filter__option_filter button svg {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }
 
 .things_filter__option_filter button {
@@ -98,12 +103,13 @@
     background-color: rgb(104, 132, 133);
     font-family: 'Rubik', sans-serif;
     column-gap: 3px;
+    border-radius: 3px;
 
     transition: all .2s linear;
 }
 
 .things_filter__option_filter button:hover {
-    background-color: rgb(76, 93, 94);
+    background-color: rgb(89, 108, 109);
     color: rgb(209, 209, 209);
 }
 
@@ -133,18 +139,13 @@
 
 .category_things__thing {
     position: relative;
-    text-decoration: none;
-    width: 330px;
-    height: 550px;
-    background-color: rgb(104, 132, 133);
-    border-radius: 5px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    row-gap: 20px;
-    padding: 0 20px 30px;
+    width: 350px;
+    height: 530px;
+    background-color: rgb(104, 132, 133);
+    border-radius: 5px;
+    padding: 10px 20px 30px;
 
     transition: all .1s linear;
 }
@@ -158,6 +159,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    row-gap: 10px;
+    background-color: rgb(97, 120, 121);
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .name__imgs {
@@ -206,12 +212,15 @@
 }
 
 .name__title {
-    color: rgb(31, 30, 30);
+    color: rgb(17, 17, 17);
     text-decoration: none;
-    font-size: 19px;
-    transition: color .2s linear;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-family: 'Rubik', sans-serif;
+    line-height: 20px;
+    text-transform: uppercase;
+
+    transition: color .2s linear;
 }
 
 .name__title:hover {
@@ -228,7 +237,7 @@
     justify-content: flex-start;
     padding: 10px;
     row-gap: 3px;
-    margin-top: 10px;
+    margin-top: 20px;
     border-radius: 5px;
 }
 
@@ -311,17 +320,21 @@
 }
 
 .thing__price {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    row-gap: 30px;
+    row-gap: 20px;
 }
 
 .price__price {
     font-family: 'Rubik', sans-serif;
     color: rgb(0, 0, 0);
-    font-size: 19px;
+    font-size: 20px;
 }
 
 .price__buy_btn {
@@ -362,15 +375,10 @@
 }
 
 .thing__add_to svg {
-    width: 22px;
-    height: 22px;
+    width: 25px;
+    height: 25px;
+    stroke: #000000;
 }
-
-.thing__add_to img {
-    width: 22px;
-    height: 22px;
-}
-
 
 @keyframes AdToWishlist {
     0% {
@@ -409,6 +417,7 @@
     100% {
         color: #a13333;
         fill: #a13333;
+        transform: none;
     }
 }
 
@@ -417,7 +426,7 @@
     stroke-dashoffset: 60;
     color: #000;
 
-    animation: AdToWishlist .8s linear forwards, AdToWishlistKnock .4s .8s linear forwards;
+    animation: AdToWishlistKnock .4s linear forwards;
 }
 
 .unautheticated {
@@ -431,4 +440,33 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
+}
+
+@media (max-width: 1522px) {
+    .container__things_filter {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 60px;
+        padding: 5px 15px;
+        border-radius: 3px;
+    
+        background-color: rgb(58, 58, 58);
+    }
+
+    .things_container__search {
+        position: unset;
+        left: 0;
+        transform: none;
+        margin: 0 auto;
+    }
+
+    .things_filter__option_filter {
+        position: unset;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 3px;
+    }
 }
