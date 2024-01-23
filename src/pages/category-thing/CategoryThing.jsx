@@ -42,7 +42,19 @@ export const CategoryThing = () => {
     }, [])
 
     useEffect(() => {
-        console.log(selectedThing)
+        const addToPurchases = () => {
+            axios({
+                method: 'post',
+                url: 'http://127.0.0.1:8000/add-to-purchases/',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + String(tokens.access)
+                },
+                data: {title: selectedThing.title, selected_size: selectedThing.selected_size, price: selectedThing.price}
+            })
+        }
+
+        addToPurchases()
     }, [selectedThing])
 
     useEffect(() => {
@@ -160,19 +172,6 @@ export const CategoryThing = () => {
             if(response.status === 200) {
                 setThings(data)
             }
-        })
-    }
-
-    const addToPurchases = () => {
-        axios({
-            method: 'post',
-            url: 'http://127.0.0.1:8000/add-to-purchases/',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            data: {title: selectedThing.title, selected_size: selectedThing.selected_size, price: selectedThing.price}
-        }).then((response) => {
-            console.log(response)
         })
     }
 
@@ -298,7 +297,7 @@ export const CategoryThing = () => {
                                     <div className="thing__price">
                                         <span className="price__price">{thing.price} р.</span>
                                         
-                                        <button className="price__buy_btn" style={labelActive.slice(0, -2).includes(thing.title) ? null : {opacity: ".6"}} onClick={() => {setSelectedThing({"title": labelActive.slice(0, -2), "img": thing.one_img, "selected_size": labelActive.slice(-2), "price": thing.price}); addToPurchases()}} disabled={labelActive.slice(0, -2).includes(thing.title) ? false : true}>КУПИТЬ</button>
+                                        <button className="price__buy_btn" style={labelActive.slice(0, -2).includes(thing.title) ? null : {opacity: ".6"}} onClick={() => setSelectedThing({"title": labelActive.slice(0, -2), "selected_size": labelActive.slice(-2), "price": thing.price})} disabled={labelActive.slice(0, -2).includes(thing.title) ? false : true}>КУПИТЬ</button>
                                     </div>
 
                                     <div className="thing__add_to">
