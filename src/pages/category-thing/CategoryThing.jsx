@@ -33,13 +33,17 @@ export const CategoryThing = () => {
     const [checkWishlist, setCheckWishlist] = useState([])
     const [labelActive, setLabelActive] = useState("")
     const [selectedThing, setSelectedThing] = useState({})
-    const [activeFilterBtn, setActiveFilterBtn] = useState(false)
+    const [activeFilterBtn, setActiveFilterBtn] = useState("")
 
     useEffect(() => {
         categoryThings()
 
         document.title = category.charAt(0).toUpperCase() + category.slice(1)
     }, [])
+
+    useEffect(() => {
+        console.log(selectedThing)
+    }, [selectedThing])
 
     useEffect(() => {
         // const objects = []
@@ -155,8 +159,20 @@ export const CategoryThing = () => {
 
             if(response.status === 200) {
                 setThings(data)
-                console.log(response)
             }
+        })
+    }
+
+    const addToPurchases = () => {
+        axios({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/add-to-purchases/',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            data: {title: selectedThing.title, selected_size: selectedThing.selected_size, price: selectedThing.price}
+        }).then((response) => {
+            console.log(response)
         })
     }
 
@@ -169,7 +185,7 @@ export const CategoryThing = () => {
                     <div className="container__things_filter">
                         <div className="things_container__search">
                             <form method="post" onSubmit={searchThings}>
-                                <input name="search" type="text" autoComplete="off"/>
+                                <input name="search" type="text" autoComplete="off" />
 
                                 <button>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="30" viewBox="0 -960 960 960" width="30">
@@ -282,7 +298,7 @@ export const CategoryThing = () => {
                                     <div className="thing__price">
                                         <span className="price__price">{thing.price} р.</span>
                                         
-                                        <button className="price__buy_btn" style={labelActive.slice(0, -2).includes(thing.title) ? null : {opacity: ".6"}} onClick={() => setSelectedThing({"title": labelActive.slice(0, -2), "selected_size": labelActive.slice(-2)})} disabled={labelActive.slice(0, -2).includes(thing.title) ? false : true}>КУПИТЬ</button>
+                                        <button className="price__buy_btn" style={labelActive.slice(0, -2).includes(thing.title) ? null : {opacity: ".6"}} onClick={() => {setSelectedThing({"title": labelActive.slice(0, -2), "img": thing.one_img, "selected_size": labelActive.slice(-2), "price": thing.price}); addToPurchases()}} disabled={labelActive.slice(0, -2).includes(thing.title) ? false : true}>КУПИТЬ</button>
                                     </div>
 
                                     <div className="thing__add_to">
