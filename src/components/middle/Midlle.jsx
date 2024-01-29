@@ -34,10 +34,6 @@ function Middle() {
             if(response.status === 200) {
                 setCategories(data)
             }
-        }).catch((error) => {
-            if(error) {
-                logoutUser()
-            }
         })
     }
 

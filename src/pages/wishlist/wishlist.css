@@ -123,11 +123,12 @@
 }
 
 .wishlist_thing__img_title a {
-    font-size: 15px;
+    font-size: 13px;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.74);
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
+    text-transform: uppercase;
 
     transition: color .2s linear;
 }
