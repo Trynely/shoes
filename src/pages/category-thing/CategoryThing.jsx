@@ -1,6 +1,3 @@
-/* eslint-disable react/no-unknown-property */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
 import axios from "axios"
 import {Link, useParams} from "react-router-dom"
 import {useContext, useEffect, useRef, useState} from "react"
@@ -27,6 +24,7 @@ export const CategoryThing = () => {
     const label43 = useRef("")
     const label44 = useRef("")
     const label45 = useRef("")
+    const buyBtn = useRef("")
 
     const [things, setThings] = useState([])
     const [checkCart, setCheckCart] = useState([])
@@ -42,19 +40,23 @@ export const CategoryThing = () => {
     }, [])
 
     useEffect(() => {
-        const addToPurchases = () => {
-            axios({
-                method: 'post',
-                url: 'http://127.0.0.1:8000/add-to-purchases/',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + String(tokens.access)
-                },
-                data: {title: selectedThing.title, selected_size: selectedThing.selected_size, price: selectedThing.price}
-            })
+        if(buyBtn.current.click) {
+            const addToPurchases = () => {
+                axios({
+                    method: 'post',
+                    url: 'http://127.0.0.1:8000/add-to-purchases/',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + String(tokens.access)
+                    },
+                    data: {title: selectedThing.title, selected_size: selectedThing.selected_size, price: selectedThing.price}
+                })
+            }
+    
+            if(tokens) {
+                addToPurchases()
+            }
         }
-
-        addToPurchases()
     }, [selectedThing])
 
     useEffect(() => {
@@ -297,7 +299,7 @@ export const CategoryThing = () => {
                                     <div className="thing__price">
                                         <span className="price__price">{thing.price} р.</span>
                                         
-                                        <button className="price__buy_btn" style={labelActive.slice(0, -2).includes(thing.title) ? null : {opacity: ".6"}} onClick={() => setSelectedThing({"title": labelActive.slice(0, -2), "selected_size": labelActive.slice(-2), "price": thing.price})} disabled={labelActive.slice(0, -2).includes(thing.title) ? false : true}>КУПИТЬ</button>
+                                        <button ref={buyBtn} className="price__buy_btn" style={labelActive.slice(0, -2).includes(thing.title) ? null : {opacity: ".6"}} onClick={() => setSelectedThing({"title": labelActive.slice(0, -2), "selected_size": labelActive.slice(-2), "price": thing.price})} disabled={labelActive.slice(0, -2).includes(thing.title) ? false : true}>КУПИТЬ</button>
                                     </div>
 
                                     <div className="thing__add_to">

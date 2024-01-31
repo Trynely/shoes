@@ -58,8 +58,6 @@ const ForgotPassword = () => {
                             <span style={validation === "Успешно отправлено" ? {color: "rgb(19, 78, 19)"} : {color: "rgb(112, 28, 28)"}} className="validation_of_forgot_password">{validation}</span>
                             
                             <button>
-                                Отправить
-
                                 {
                                     loading 
                                         ?
@@ -68,7 +66,7 @@ const ForgotPassword = () => {
                                         size={5}
                                     />
                                         :
-                                    null
+                                    <>Отправить</>
                                 }
                             </button>            
                         </form>
