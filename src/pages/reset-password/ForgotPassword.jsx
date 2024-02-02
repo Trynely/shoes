@@ -4,6 +4,7 @@ import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import {BeatLoader} from "react-spinners"
 import "./reset-password.css"
+import axios from "axios"
 
 const ForgotPassword = () => {
     const [validation, setValidation] = useState("")
@@ -39,6 +40,35 @@ const ForgotPassword = () => {
         }, 5000)
     }
 
+    const sendToEmailResetPassword = (event) => {
+        setLoading(true)
+
+        event.preventDefault()
+
+        axios({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/user/send-reset-password-to-email/',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {email: event.target.email.value}
+        }).then((response) => {
+            if(response.status === 200) {
+                setValidation("Успешно отправлено")
+            }
+        }).catch((error) => {
+            if(error) {
+                setValidation("Не удалось отправить")
+            }
+        })
+
+        setLoading(false)
+
+        setTimeout(() => {
+            setValidation(null)
+        }, 5000)
+    }
+
     return (
         <div className="wrapper">
             <Header/>
@@ -52,8 +82,8 @@ const ForgotPassword = () => {
                     </div>
 
                     <div className="container__forgot_password_form">
-                        <form onSubmit={ResetPassword} method="post">
-                            <input type="email" name="email" autoComplete="off" placeholder="Email"/>
+                        <form onSubmit={sendToEmailResetPassword} method="post">
+                            <input type="email" name="email" autoComplete="off" placeholder="Email" />
                             
                             <span style={validation === "Успешно отправлено" ? {color: "rgb(19, 78, 19)"} : {color: "rgb(112, 28, 28)"}} className="validation_of_forgot_password">{validation}</span>
                             
