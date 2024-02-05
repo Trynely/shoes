@@ -1,49 +1,23 @@
+import axios from "axios"
 import {useState, useEffect} from "react"
 import {Link} from "react-router-dom"
+import {BeatLoader} from "react-spinners"
 import Header from "../../components/header/Header" 
 import Footer from "../../components/footer/Footer"
-import {BeatLoader} from "react-spinners"
 import "./reset-password.css"
-import axios from "axios"
 
 const ForgotPassword = () => {
     const [validation, setValidation] = useState("")
-    const [loading, setLoading] = useState()
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         document.title = "Сброс пароля"
     }, [])
 
-    const ResetPassword = async (event) => {
-        setLoading(true)
-
-        event.preventDefault()
-        
-        const response = await fetch("http://127.0.0.1:8000/auth/users/reset_password/", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({email: event.target.email.value})
-        })
-        
-        if(response.status === 204) {
-            setValidation("Успешно отправлено")
-        } else {
-            setValidation("Не удалось отправить")
-        }
-
-        setLoading(false)
-
-        setTimeout(() => {
-            setValidation(null)
-        }, 5000)
-    }
-
     const sendToEmailResetPassword = (event) => {
-        setLoading(true)
-
         event.preventDefault()
+        
+        setLoading(true)
 
         axios({
             method: 'post',
@@ -55,14 +29,14 @@ const ForgotPassword = () => {
         }).then((response) => {
             if(response.status === 200) {
                 setValidation("Успешно отправлено")
+                setLoading(false)
             }
         }).catch((error) => {
             if(error) {
                 setValidation("Не удалось отправить")
+                setLoading(false)
             }
         })
-
-        setLoading(false)
 
         setTimeout(() => {
             setValidation(null)
@@ -110,7 +84,7 @@ const ForgotPassword = () => {
                 </svg>
 
                 назад
-            </Link>    
+            </Link>
 
             <Footer/>
         </div>
