@@ -1,16 +1,19 @@
-/* eslint-disable no-unused-vars */
 import axios from "axios"
 import {Link} from "react-router-dom"
 import {useState} from "react"
+import {BeatLoader} from "react-spinners"
 import Header from "../../components/header/Header"
 import Footer from "../../components/footer/Footer"
 import "./register.css"
 
 const Register = () => {
+    const [loading, setLoading] = useState(false)
     const [validation, setValidation] = useState("")
     
     const userRegister = (event) => {
         event.preventDefault()
+
+        setLoading(true)
         
         axios({
             method: 'post',
@@ -25,15 +28,19 @@ const Register = () => {
             }
         }).then((response) => {
             if(response.status === 201) {
-                setValidation("Аккаунт успешно создан")
+                setValidation("АККАУНТ УСПЕШНО СОЗДАН")
+                setLoading(false)
             }
-
-            setTimeout(() => {
-                setValidation(null)
-            }, 5000)
         }).catch((error) => {
-            setValidation("Произошла ошибка")
+            if(error) {
+                setLoading(false)
+                setValidation("ПРОИЗОШЛА ОШИБКА")
+            }
         })
+
+        setTimeout(() => {
+            setValidation(null)
+        }, 5000)
     }
 
     return (
@@ -77,7 +84,7 @@ const Register = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
                             </svg>
 
-                            <span style={validation === "Аккаунт успешно создан" ? {color: "rgb(0, 82, 0)"} : {color: "rgb(87, 0, 0)"}} className="register_form__password_block__validation">{validation}</span>
+                            <span style={validation === "АККАУНТ УСПЕШНО СОЗДАН" ? {color: "rgb(0, 82, 0)"} : {color: "rgb(87, 0, 0)"}} className="register_form__password_block__validation">{validation}</span>
                         </div>
 
                         <div className="register_form__login_block">
@@ -93,7 +100,18 @@ const Register = () => {
                         </div>
                         
                         <div className="register_form__btn_block">
-                            <button method="submit">Создать</button>
+                            <button method="submit">
+                                {
+                                    loading
+                                        ?
+                                    <BeatLoader
+                                        color="rgba(238, 238, 238, 0.795)"
+                                        size={5}
+                                    />
+                                        :
+                                    <>Создать</>
+                                }
+                            </button>
                         </div>
                     </form>
                 </div>

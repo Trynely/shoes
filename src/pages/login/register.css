@@ -74,7 +74,6 @@
     font-size: 90%;
     font-family: 'Poppins', sans-serif;
     outline: none;
-    font-weight: 600;
     background-color: rgb(117, 145, 146);
     margin-left: 35px;
 
@@ -123,7 +122,7 @@
 
 .register_form__password_block__validation {
     position: absolute;
-    bottom: -15px;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 12px;
